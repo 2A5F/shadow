@@ -33,7 +33,10 @@
     "vue component",
     "vue components",
     "component",
-    "components"
+    "components",
+    "vue-directive",
+    "vue directive",
+    "directive"
   ],
   "dependencies":{
     "vue": "^2.6.6"
