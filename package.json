@@ -1,7 +1,7 @@
 {
   "name": "vue-shadow-dom",
-  "version": "1.0.1",
-  "description": "Vue Shadow Dom",
+  "version": "1.0.3",
+  "description": "Shadow dom component for Vue",
   "main": "shadow.js",
   "module": "shadow.mjs",
   "umd::main": "./dist/shadow.js",
@@ -27,7 +27,13 @@
     "vue-shadow-dom",
     "shadow-dom",
     "vue shadow dom",
-    "shadow dom"
+    "shadow dom",
+    "vue-component",
+    "vue-components",
+    "vue component",
+    "vue components",
+    "component",
+    "components"
   ],
   "dependencies":{
     "vue": "^2.6.6"
