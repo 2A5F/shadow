@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "esnext",
+        "outDir": "./tsout",
+        "declaration": true,
+        "declarationDir": "./types",
+        "moduleResolution": "node"
+    },
+    "include": [
+        "src/**/*.ts",
+    ],
+}

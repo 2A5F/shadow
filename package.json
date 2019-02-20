@@ -1,0 +1,40 @@
+{
+  "name": "vue-shadow-dom",
+  "version": "1.0.0",
+  "description": "Vue Shadow Dom",
+  "main": "shadow.js",
+  "module": "shadow.mjs",
+  "umd::main": "./dist/shadow.js",
+  "browser": "./dist/shadow.min.js",
+  "unpkg": "./dist/shadow.min.js",
+  "types:": "./types/shadow.t.ds",
+  "typings:": "./types/shadow.t.ds",
+  "scripts": {
+    "build": "tsc && rollup -c rollup.config.cjs.js && rollup -c && rollup -c rollup.config.min.js && rollup -c rollup.config.es.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2A5F/vue-shadow-dom.git"
+  },
+  "author": "2A5F",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/2A5F/vue-shadow-dom/issues"
+  },
+  "homepage": "https://github.com/2A5F/vue-shadow-dom#readme",
+  "keywords": [
+    "vue", 
+    "vue-shadow-dom",
+    "shadow-dom",
+    "vue shadow dom",
+    "shadow dom"
+  ],
+  "dependencies":{
+    "vue": "^2.6.6"
+  },
+  "devDependencies": {
+    "rollup": "^1.2.2",
+    "rollup-plugin-terser": "^4.0.4",
+    "typescript": "^3.3.3"
+  }
+}
