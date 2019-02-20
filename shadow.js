@@ -1,7 +1,9 @@
 'use strict';
 
-function Shadow(vue) {
-    vue.component('shadow', {
+Object.defineProperty(exports, '__esModule', { value: true });
+
+function install(vue) {
+    vue.component('shadow-root', {
         template: '<div><slot></slot></div>',
         mounted() {
             const fragment = document.createDocumentFragment();
@@ -14,7 +16,7 @@ function Shadow(vue) {
     });
 }
 if (typeof window != 'undefined' && window.Vue) {
-    Shadow(window.Vue);
+    install(window.Vue);
 }
 
-module.exports = Shadow;
+exports.install = install;

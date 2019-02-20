@@ -1,5 +1,5 @@
-function Shadow(vue) {
-    vue.component('shadow', {
+function install(vue) {
+    vue.component('shadow-root', {
         template: '<div><slot></slot></div>',
         mounted() {
             const fragment = document.createDocumentFragment();
@@ -12,7 +12,7 @@ function Shadow(vue) {
     });
 }
 if (typeof window != 'undefined' && window.Vue) {
-    Shadow(window.Vue);
+    install(window.Vue);
 }
 
-export default Shadow;
+export { install };

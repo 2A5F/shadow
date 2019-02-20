@@ -1,2 +1,2 @@
 import Vue from 'vue';
-export default function Shadow(vue: typeof Vue): void;
+export declare function install(vue: typeof Vue): void;
