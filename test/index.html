@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <meta charset=utf8>
+    <title>test</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../dist/shadow.js"></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            vm = new Vue({
+                el: document.querySelector('#app'),
+                data: {
+                    value: 1
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div v-shadow id="app">
+        <div>default</div>
+        <input v-model="value">
+        <shadow-root>
+            <shadow-root>
+                <div v-shadow>{{value}}</div>
+            </shadow-root>
+        </shadow-root>
+    </div>
+</body>
+
+</html>

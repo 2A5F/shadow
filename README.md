@@ -1,5 +1,5 @@
 # Shadow
-**Shadow dom component for Vue**
+***Shadow dom support for Vue***
 ## Usage
 ```
 npm i vue-shadow-dom -S
@@ -21,7 +21,8 @@ Vue.use(shadow)
 ```
 ---
 ```html
-<div>
+<div v-shadow id=app>
+  <input>
   <shadow-root>
     <div></div>
     <p>123</p>
@@ -30,14 +31,27 @@ Vue.use(shadow)
 ```
 Will output
 ```html
-▼ <div>
- ▼ <div>
+▼ <div id="app">
+ ▼ #shadow-root (open)
+  <input>
+  ▼ <div>
    ▼ #shadow-root (open)
       <div></div>
       <p>123</p>
   </div>
 </div>
 ```
+## Api
+- `v-shadow`  
+  Usage: 
+  ```html
+  <div v-shadow></div>
+  ```
+- `<shadow-root>`  
+Usage: 
+  ```html
+  <shadow-root></shadow-root>
+  ```
 ## Build
 ```
 npm i
