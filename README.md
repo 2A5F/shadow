@@ -36,10 +36,12 @@ Will output
   <input>
   ▼ <div>
    ▼ #shadow-root (open)
-      <div></div>
-      <p>123</p>
+    ▼ <div>
+        <div></div>
+        <p>123</p>
+      </div>
+    </div>
   </div>
-</div>
 ```
 ## Api
 - `<shadow-root>`  
