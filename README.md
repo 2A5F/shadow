@@ -90,7 +90,7 @@ Usage:
       </article>
     ```
     #### static
-    If you delete the first level tag in the #shadow-root will not be restored
+    If you destroy the first level tag in the #shadow-root will not be restored
     ```html
     <article>
       <shadow-root :static=true><br></shadow-root>
@@ -145,6 +145,17 @@ Usage:
   ```html
   <div v-shadow></div>
   ```
+If you need to customize
+```html
+<div 1>
+  #shadow-root (open)
+    <div 2></div>
+    <div 2></div>
+    <div 2></div>
+    ...
+</div>
+```
+just let `div 1` and `div 2` not be destroyed
 ## Build
 ```
 npm i
