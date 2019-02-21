@@ -147,15 +147,24 @@ Usage:
   ```html
   <div v-shadow></div>
   ```
+---
 If you need to customize
 ```html
-<div 1>
-  #shadow-root (open)
-    <div 2></div>
-    <div 2></div>
-    <div 2></div>
-    ...
-</div>
+<div 0>
+  <div 1>
+    #shadow-root (open)
+      <div 2></div 2>
+      <div 2>
+        <div 3></div 3>
+      </div 2>
+      <div 2>
+        <div 3>
+          <div 4>...</div 4>
+        </div 3>
+      </div 2>
+      ...
+  </div 1>
+</div 0>
 ```
 just let `div 1` and `div 2` not be destroyed
 ## Build
