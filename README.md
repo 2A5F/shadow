@@ -33,7 +33,7 @@ Will output
 ```html
 ▼ <div id="app">
  ▼ #shadow-root (open)
-  <input>
+    <input>
   ▼ <div>
    ▼ #shadow-root (open)
     ▼ <div>

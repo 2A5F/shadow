@@ -1,6 +1,6 @@
 {
   "name": "vue-shadow-dom",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Shadow dom support for Vue",
   "main": "shadow.js",
   "module": "shadow.mjs",
