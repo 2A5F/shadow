@@ -1,0 +1,10 @@
+pull_request_rules:
+  - name: automatic merge for bot pull requests on master
+    conditions:
+      - author=renovate[bot]
+      - author=imgbot[bot]
+      - status-success=Travis CI - Pull Request
+      - base=master
+    actions:
+      merge:
+        method: merge
