@@ -1,10 +1,19 @@
 pull_request_rules:
-  - name: automatic merge for bot pull requests on master
+  - name: automatic merge for @2A5F pull requests
     conditions:
-      - author=renovate[bot]
-      - author=imgbot[bot]
-      - status-success=Travis CI - Pull Request
-      - base=master
+        - "author=2A5F"
     actions:
-      merge:
-        method: merge
+        merge:
+          method: merge
+  - name: automatic merge for renovate[bot] pull requests
+    conditions:
+        - "author=renovate[bot]"
+    actions:
+        merge:
+          method: merge
+  - name: automatic merge for imgbot[bot] pull requests
+    conditions:
+        - "author=imgbot[bot]"
+    actions:
+        merge:
+          method: merge
