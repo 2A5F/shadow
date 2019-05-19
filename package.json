@@ -42,7 +42,7 @@
     "vue": "^2.6.6"
   },
   "devDependencies": {
-    "rollup": "1.12.2",
+    "rollup": "1.12.3",
     "rollup-plugin-terser": "4.0.4",
     "typescript": "3.4.5"
   }
