@@ -1,16 +1,4 @@
 pull_request_rules:
-  - name: automatic merge for @2A5F pull requests
-    conditions:
-        - "author=2A5F"
-    actions:
-        merge:
-          method: merge
-  - name: automatic merge for renovate[bot] pull requests
-    conditions:
-        - "author=renovate[bot]"
-    actions:
-        merge:
-          method: merge
   - name: automatic merge for imgbot[bot] pull requests
     conditions:
         - "author=imgbot[bot]"
