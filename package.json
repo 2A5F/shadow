@@ -1,14 +1,14 @@
 {
   "name": "vue-shadow-dom",
-  "version": "1.4.0",
+  "version": "1.4.3",
   "description": "Shadow dom support for Vue",
   "main": "shadow.js",
   "module": "shadow.mjs",
   "umd::main": "./dist/shadow.js",
   "browser": "./dist/shadow.min.js",
   "unpkg": "./dist/shadow.min.js",
-  "types:": "./types/shadow.t.ds",
-  "typings:": "./types/shadow.t.ds",
+  "types": "./types/shadow.d.ts",
+  "typings": "./types/shadow.d.ts",
   "scripts": {
     "build": "tsc && rollup -c rollup.config.cjs.js && rollup -c && rollup -c rollup.config.min.js && rollup -c rollup.config.es.js"
   },
