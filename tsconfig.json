@@ -3,6 +3,7 @@
         "module": "esnext",
         "target": "esnext",
         "outDir": "./tsout",
+        "strict": true,
         "declaration": true,
         "declarationDir": "./types",
         "moduleResolution": "node"
