@@ -12,8 +12,21 @@ function makeAbstractShadow(rootEl: Element, childNodes: NodeList) {
     shadowroot.appendChild(fragment)
 }
 
+function data() {
+    return {
+        pabstract: false,
+        pstatic: false
+    }
+}
+
 const ShadowRoot = Vue.extend({
-    template: '<component :is="tag"><slot v-if="pstatic"></slot><component :is="tag" :class="slotClass" :id="slotId" v-else><slot></slot></component></component>',
+    render(h) {
+        return h('component', { props: { is: this.tag } }, [
+            this.pstatic ? this.$slots.default : h('component', { props: { is: this.slotTag }, attrs: { id: this.slotId }, 'class': this.slotClass }, [
+                this.$slots.default
+            ])
+        ])
+    },
     props: {
         abstract: {
             type: Boolean,
@@ -38,12 +51,7 @@ const ShadowRoot = Vue.extend({
             type: String
         }
     },
-    data() {
-        return {
-            pabstract: false,
-            pstatic: false
-        }
-    },
+    data,
     beforeMount() {
         this.pabstract = this.abstract
         this.pstatic = this.static
@@ -54,7 +62,7 @@ const ShadowRoot = Vue.extend({
         } else {
             makeShadow(this.$el)
         }
-    }
+    },
 })
 
 function install(vue: typeof Vue) {

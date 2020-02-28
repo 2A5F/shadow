@@ -2,7 +2,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue')) :
     typeof define === 'function' && define.amd ? define(['exports', 'vue'], factory) :
     (global = global || self, factory(global.shadow = {}, global.Vue));
-}(this, function (exports, Vue) { 'use strict';
+}(this, (function (exports, Vue) { 'use strict';
 
     Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue;
 
@@ -17,8 +17,20 @@
         const shadowroot = rootEl.attachShadow({ mode: 'open' });
         shadowroot.appendChild(fragment);
     }
+    function data() {
+        return {
+            pabstract: false,
+            pstatic: false
+        };
+    }
     const ShadowRoot = Vue.extend({
-        template: '<component :is="tag"><slot v-if="pstatic"></slot><component :is="tag" :class="slotClass" :id="slotId" v-else><slot></slot></component></component>',
+        render(h) {
+            return h('component', { props: { is: this.tag } }, [
+                this.pstatic ? this.$slots.default : h('component', { props: { is: this.slotTag }, attrs: { id: this.slotId }, 'class': this.slotClass }, [
+                    this.$slots.default
+                ])
+            ]);
+        },
         props: {
             abstract: {
                 type: Boolean,
@@ -43,12 +55,7 @@
                 type: String
             }
         },
-        data() {
-            return {
-                pabstract: false,
-                pstatic: false
-            };
-        },
+        data,
         beforeMount() {
             this.pabstract = this.abstract;
             this.pstatic = this.static;
@@ -60,7 +67,7 @@
             else {
                 makeShadow(this.$el);
             }
-        }
+        },
     });
     function install(vue) {
         vue.component('shadow-root', ShadowRoot);
@@ -82,4 +89,4 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
