@@ -18,6 +18,7 @@
         }
         newApp('#vshadow')
         newApp('#app')
+        newApp('#nested')
         newApp('#abstract')
         newApp('#static')
     </script>
@@ -34,16 +35,27 @@
             </article>
         </section>
     </div>
+    <hr>
     <div id="app">
         <div>default</div>
         <input v-model="value" type="number">
+        <shadow-root v-if="value != 3">
+            <p>exist</p>
+            <p v-if="value == 1">{{value}}</p>
+        </shadow-root>
+    </div>
+    <hr>
+    <div id="nested">
+        <div>nested</div>
+        <input v-model="value" type="number">
         <shadow-root>
-            <shadow-root v-if="value == 1">
+            <shadow-root v-if="value != 3">
                 <p>exist</p>
-                <p>{{value}}</p>
+                <p v-if="value == 1">{{value}}</p>
             </shadow-root>
         </shadow-root>
     </div>
+    <hr>
     <div id="abstract">
         <div>abstract</div>
         <input v-model="value" type="number">
@@ -54,6 +66,7 @@
             </shadow-root>
         </section>
     </div>
+    <hr>
     <div id="static">
         <div>static</div>
         <input v-model="value" type="number">
