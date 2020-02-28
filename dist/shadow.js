@@ -25,8 +25,8 @@
     }
     const ShadowRoot = Vue.extend({
         render(h) {
-            return h('component', { props: { is: this.tag } }, [
-                this.pstatic ? this.$slots.default : h('component', { props: { is: this.slotTag }, attrs: { id: this.slotId }, 'class': this.slotClass }, [
+            return h(this.tag, {}, [
+                this.pstatic ? this.$slots.default : h(this.slotTag, { attrs: { id: this.slotId }, 'class': this.slotClass }, [
                     this.$slots.default
                 ])
             ]);
