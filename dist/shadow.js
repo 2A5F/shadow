@@ -38,7 +38,7 @@
     //     console.log('removeShadow', newroot)
     //     return newroot
     // }
-    const ShadowRoot = vue.defineComponent({
+    const ShadowRoot = asInstall(vue.defineComponent({
         props: {
             abstract: {
                 type: Boolean,
@@ -83,7 +83,11 @@
                 static_.value ? slots.default() : vue.h(props.slotTag, { id: props.slotId, class: props.slotClass }, [slots.default()])
             ]);
         },
-    });
+        install,
+    }));
+    function asInstall(obj) {
+        return obj;
+    }
     function install(app) {
         app.component('shadow-root', ShadowRoot);
         app.directive('shadow', {

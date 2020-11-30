@@ -36,7 +36,7 @@ export function makeShadowRaw(rootEl: Element, childNodes: NodeList) {
 //     return newroot
 // }
 
-export const ShadowRoot = defineComponent({
+export const ShadowRoot = asInstall(defineComponent({
     props: {
         abstract: {
             type: Boolean,
@@ -86,7 +86,12 @@ export const ShadowRoot = defineComponent({
             </props.slotTag>
         ]}</props.tag>
     },
-})
+    install,
+}))
+
+function asInstall<T>(obj: T): T & { install: typeof install } {
+    return obj as any
+}
 
 export function install(app: App) {
     app.component('shadow-root', ShadowRoot)

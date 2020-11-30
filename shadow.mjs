@@ -34,7 +34,7 @@ function makeShadowRaw(rootEl, childNodes) {
 //     console.log('removeShadow', newroot)
 //     return newroot
 // }
-const ShadowRoot = defineComponent({
+const ShadowRoot = asInstall(defineComponent({
     props: {
         abstract: {
             type: Boolean,
@@ -79,7 +79,11 @@ const ShadowRoot = defineComponent({
             static_.value ? slots.default() : h(props.slotTag, { id: props.slotId, class: props.slotClass }, [slots.default()])
         ]);
     },
-});
+    install,
+}));
+function asInstall(obj) {
+    return obj;
+}
 function install(app) {
     app.component('shadow-root', ShadowRoot);
     app.directive('shadow', {
