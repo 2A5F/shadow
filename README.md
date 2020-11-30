@@ -1,4 +1,7 @@
 # Shadow
+[![](https://img.shields.io/npm/v/vue-shadow-dom)](https://www.npmjs.com/package/vue-shadow-dom)
+![MIT](https://img.shields.io/github/license/2a5f/shadow)
+[![](https://img.shields.io/badge/Vue-3-brightgreen?style=flat&logo=vue.js)](https://v3.vuejs.org/)  
 ***Shadow dom support for Vue***
 ## Usage
 ```
@@ -12,12 +15,18 @@ npm i vue-shadow-dom -S
   <script src='../path/to/shadow.js'></script>
   or
   <script src='../path/to/shadow.mjs' type=module></script>
+  
+  <script>
+  const app = Vue.createApp(...)
+  app.use(shadow)
+  </script>
 </head>
 ```
 or
 ```typescript
 import shadow from 'vue-shadow-dom'
-Vue.use(shadow)
+const app = Vue.createApp(...)
+app.use(shadow)
 ```
 ---
 ```html
