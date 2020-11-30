@@ -1,10 +1,12 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue')) :
     typeof define === 'function' && define.amd ? define(['exports', 'vue'], factory) :
-    (global = global || self, factory(global.shadow = {}, global.Vue));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.shadow = {}, global.Vue));
 }(this, (function (exports, Vue) { 'use strict';
 
-    Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue;
+    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+    var Vue__default = /*#__PURE__*/_interopDefaultLegacy(Vue);
 
     function makeShadow(el) {
         makeAbstractShadow(el, el.childNodes);
@@ -23,7 +25,7 @@
             pstatic: false
         };
     }
-    const ShadowRoot = Vue.extend({
+    const ShadowRoot = Vue__default['default'].extend({
         render(h) {
             return h(this.tag, {}, [
                 this.pstatic ? this.$slots.default : h(this.slotTag, { attrs: { id: this.slotId }, 'class': this.slotClass }, [

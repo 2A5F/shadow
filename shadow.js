@@ -2,9 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+var Vue = require('vue');
 
-var Vue = _interopDefault(require('vue'));
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var Vue__default = /*#__PURE__*/_interopDefaultLegacy(Vue);
 
 function makeShadow(el) {
     makeAbstractShadow(el, el.childNodes);
@@ -23,7 +25,7 @@ function data() {
         pstatic: false
     };
 }
-const ShadowRoot = Vue.extend({
+const ShadowRoot = Vue__default['default'].extend({
     render(h) {
         return h(this.tag, {}, [
             this.pstatic ? this.$slots.default : h(this.slotTag, { attrs: { id: this.slotId }, 'class': this.slotClass }, [

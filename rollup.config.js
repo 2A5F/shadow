@@ -3,6 +3,11 @@ export default {
     output: {
         file: './dist/shadow.js',
         format: 'umd',
-        name: 'shadow'
-    }
+        name: 'shadow',
+        exports: 'named',
+        globals: {
+            vue: 'Vue'
+        },
+    },
+    external: ['vue'],
 };

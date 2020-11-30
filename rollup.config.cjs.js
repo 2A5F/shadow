@@ -3,6 +3,8 @@ export default {
     output: {
         file: './shadow.js',
         format: 'cjs',
-        name: 'shadow'
-    }
+        name: 'shadow',
+        exports: 'named',
+    },
+    external: ['vue'],
 };
