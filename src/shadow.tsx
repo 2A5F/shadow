@@ -1,4 +1,4 @@
-import { defineComponent, h, ref, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted, Ref } from 'vue'
+import { defineComponent, h, ref, onBeforeMount, onMounted } from 'vue'
 import type { App, VNode } from 'vue'
 
 export function makeShadow(el: Element) {
