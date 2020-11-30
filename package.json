@@ -1,6 +1,6 @@
 {
   "name": "vue-shadow-dom",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "description": "Shadow dom support for Vue",
   "main": "shadow.js",
   "module": "shadow.mjs",
@@ -17,6 +17,7 @@
     "/types"
   ],
   "scripts": {
+    "tsc:dev": "tsc -w",
     "build": "tsc && rollup -c rollup.config.cjs.js && rollup -c && rollup -c rollup.config.min.js && rollup -c rollup.config.es.js"
   },
   "repository": {
@@ -49,6 +50,6 @@
     "rollup": "^2.34.0",
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.1.2",
-    "vue": "^2.6.12"
+    "vue": "^3.0.3"
   }
 }

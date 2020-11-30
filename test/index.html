@@ -3,17 +3,20 @@
 <head>
     <meta charset=utf8>
     <title>test</title>
-    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/vue/dist/vue.global.js"></script>
     <script src="../dist/shadow.js"></script>
     <script defer>
         function newApp(el){
             document.addEventListener('DOMContentLoaded', () => {
-                new Vue({
-                    el: document.querySelector(el),
-                    data: {
-                        value: 1
+                const app = Vue.createApp({
+                    data() {
+                        return { value: 1 }
                     }
                 })
+
+                shadow.install(app)
+
+                app.mount(el)
             })
         }
         newApp('#vshadow')

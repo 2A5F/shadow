@@ -8,6 +8,13 @@
             "script": "build",
             "group": "build",
             "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "tsc:dev",
+            "problemMatcher": [],
+            "label": "npm: tsc:dev",
+            "detail": "tsc -w"
         }
     ]
 }
