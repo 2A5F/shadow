@@ -2,7 +2,7 @@
 ***Shadow dom support for Vue***
 ## Usage
 ```
-npm i vue-shadow-dom -S
+npm i vue-shadow-dom@1 -S
 ```
 ---
 ```html
