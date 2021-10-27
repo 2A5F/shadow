@@ -4,12 +4,11 @@
 [![](https://img.shields.io/badge/Vue-3-brightgreen?style=flat&logo=vue.js)](https://v3.vuejs.org/)  
 ***Shadow dom support for Vue***
 
-#### ********** important **********
-### **[For vue2 use 1.x](https://github.com/2A5F/shadow/tree/vue2)**  
-```
-npm i vue-shadow-dom@1
-```
-#### ********** important **********
+> ### !!!!!!!!!! important !!!!!!!!!!
+> ### **[For vue2 use 1.x](https://github.com/2A5F/shadow/tree/vue2)**  
+> ```
+> npm i vue-shadow-dom@1
+> ```
 
 ## Usage
 ```
