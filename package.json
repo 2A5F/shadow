@@ -1,24 +1,26 @@
 {
   "name": "vue-shadow-dom",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Shadow dom support for Vue",
   "main": "shadow.js",
   "module": "shadow.mjs",
   "umd::main": "./dist/shadow.js",
   "browser": "./dist/shadow.min.js",
   "unpkg": "./dist/shadow.min.js",
-  "types": "./types/shadow.d.ts",
-  "typings": "./types/shadow.d.ts",
+  "types": "./shadow.d.ts",
+  "typings": "./shadow.d.ts",
   "files": [
     "/dist",
     "/src",
     "/shadow.js",
     "/shadow.mjs",
-    "/types"
+    "/shadow.d.ts",
+    "/shadow.js.map",
+    "/shadow.mjs.map"
   ],
   "scripts": {
     "tsc:dev": "tsc -w",
-    "build": "tsc && rollup -c rollup.config.cjs.js && rollup -c && rollup -c rollup.config.min.js && rollup -c rollup.config.es.js"
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -47,8 +49,10 @@
     "directive"
   ],
   "devDependencies": {
+    "@rollup/plugin-virtual": "^2.0.3",
     "rollup": "^2.34.0",
     "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.31.1",
     "typescript": "^4.1.2",
     "vue": "^3.0.3"
   }

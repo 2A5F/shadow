@@ -1,8 +1,4 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var vue = require('vue');
+import { defineComponent, ref, onBeforeMount, onMounted, h } from 'https://cdn.jsdelivr.net/npm/vue@3/dist/vue.runtime.esm-browser.js';
 
 function makeShadow(el) {
     return makeShadowRaw(el, el.childNodes);
@@ -38,7 +34,7 @@ function makeShadowRaw(rootEl, childNodes) {
 //     console.log('removeShadow', newroot)
 //     return newroot
 // }
-const ShadowRoot = asInstall(vue.defineComponent({
+const ShadowRoot = asInstall(defineComponent({
     props: {
         abstract: {
             type: Boolean,
@@ -64,14 +60,14 @@ const ShadowRoot = asInstall(vue.defineComponent({
         }
     },
     setup(props, { slots }) {
-        const abstract = vue.ref(false);
-        const static_ = vue.ref(false);
-        const el = vue.ref();
-        vue.onBeforeMount(() => {
+        const abstract = ref(false);
+        const static_ = ref(false);
+        const el = ref();
+        onBeforeMount(() => {
             abstract.value = props.abstract;
             static_.value = props.static;
         });
-        vue.onMounted(() => {
+        onMounted(() => {
             if (abstract.value) {
                 makeShadowRaw(el.value.parentElement, el.value.childNodes);
             }
@@ -79,8 +75,8 @@ const ShadowRoot = asInstall(vue.defineComponent({
                 makeShadow(el.value);
             }
         });
-        return () => vue.h(props.tag, { ref: el }, [
-            static_.value ? slots.default() : vue.h(props.slotTag, { id: props.slotId, class: props.slotClass }, [slots.default()])
+        return () => h(props.tag, { ref: el }, [
+            static_.value ? slots.default() : h(props.slotTag, { id: props.slotId, class: props.slotClass }, [slots.default()])
         ]);
     },
     install,
@@ -98,10 +94,6 @@ function install(app) {
 }
 var shadow = { ShadowRoot, shadow_root: ShadowRoot, install };
 
-exports.ShadowRoot = ShadowRoot;
-exports.default = shadow;
-exports.install = install;
-exports.makeShadow = makeShadow;
-exports.makeShadowRaw = makeShadowRaw;
-exports.shadow_root = ShadowRoot;
-//# sourceMappingURL=shadow.js.map
+export default shadow;
+export { ShadowRoot, install, makeShadow, makeShadowRaw, ShadowRoot as shadow_root };
+//# sourceMappingURL=shadow.cdn-jsdelivr.mjs.map

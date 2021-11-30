@@ -96,3 +96,4 @@ var shadow = { ShadowRoot, shadow_root: ShadowRoot, install };
 
 export default shadow;
 export { ShadowRoot, install, makeShadow, makeShadowRaw, ShadowRoot as shadow_root };
+//# sourceMappingURL=shadow.mjs.map

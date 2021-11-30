@@ -6,19 +6,19 @@ export declare const ShadowRoot: {
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: Partial<{
-            static: boolean;
             abstract: boolean;
+            static: boolean;
             tag: string;
             slotTag: string;
         }> & Pick<Readonly<{
-            static: boolean;
             abstract: boolean;
+            static: boolean;
             tag: string;
             slotTag: string;
         } & {
             slotClass?: string | undefined;
             slotId?: string | undefined;
-        }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "style" | "key" | "slotClass" | "slotId" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
+        }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "slotClass" | "slotId" | "key" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class" | "style">;
         $attrs: Record<string, unknown>;
         $refs: Record<string, unknown>;
         $slots: Readonly<{
@@ -29,25 +29,25 @@ export declare const ShadowRoot: {
         $emit: (event: string, ...args: any[]) => void;
         $el: any;
         $options: import("vue").ComponentOptionsBase<Readonly<{
-            static: boolean;
             abstract: boolean;
+            static: boolean;
             tag: string;
             slotTag: string;
         } & {
             slotClass?: string | undefined;
             slotId?: string | undefined;
         }>, () => VNode, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
-            static: boolean;
             abstract: boolean;
+            static: boolean;
             tag: string;
             slotTag: string;
         }>;
         $forceUpdate: import("vue").ReactiveEffect<any>;
         $nextTick: typeof import("vue").nextTick;
-        $watch(source: TimerHandler, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
+        $watch(source: string | Function, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
     } & Readonly<{
-        static: boolean;
         abstract: boolean;
+        static: boolean;
         tag: string;
         slotTag: string;
     } & {
@@ -58,16 +58,16 @@ export declare const ShadowRoot: {
     __isTeleport?: undefined;
     __isSuspense?: undefined;
 } & import("vue").ComponentOptionsBase<Readonly<{
-    static: boolean;
     abstract: boolean;
+    static: boolean;
     tag: string;
     slotTag: string;
 } & {
     slotClass?: string | undefined;
     slotId?: string | undefined;
 }>, () => VNode, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
-    static: boolean;
     abstract: boolean;
+    static: boolean;
     tag: string;
     slotTag: string;
 }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & {
@@ -81,19 +81,19 @@ declare const _default: {
             $: import("vue").ComponentInternalInstance;
             $data: {};
             $props: Partial<{
-                static: boolean;
                 abstract: boolean;
+                static: boolean;
                 tag: string;
                 slotTag: string;
             }> & Pick<Readonly<{
-                static: boolean;
                 abstract: boolean;
+                static: boolean;
                 tag: string;
                 slotTag: string;
             } & {
                 slotClass?: string | undefined;
                 slotId?: string | undefined;
-            }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "style" | "key" | "slotClass" | "slotId" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
+            }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "slotClass" | "slotId" | "key" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class" | "style">;
             $attrs: Record<string, unknown>;
             $refs: Record<string, unknown>;
             $slots: Readonly<{
@@ -104,8 +104,8 @@ declare const _default: {
             $emit: (event: string, ...args: any[]) => void;
             $el: any;
             $options: import("vue").ComponentOptionsBase<Readonly<{
-                static: boolean;
                 abstract: boolean;
+                static: boolean;
                 tag: string;
                 slotTag: string;
             } & {
@@ -114,17 +114,17 @@ declare const _default: {
             }>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
             }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
-                static: boolean;
                 abstract: boolean;
+                static: boolean;
                 tag: string;
                 slotTag: string;
             }>;
             $forceUpdate: import("vue").ReactiveEffect<any>;
             $nextTick: typeof import("vue").nextTick;
-            $watch(source: TimerHandler, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
+            $watch(source: string | Function, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
         } & Readonly<{
-            static: boolean;
             abstract: boolean;
+            static: boolean;
             tag: string;
             slotTag: string;
         } & {
@@ -137,8 +137,8 @@ declare const _default: {
         __isTeleport?: undefined;
         __isSuspense?: undefined;
     } & import("vue").ComponentOptionsBase<Readonly<{
-        static: boolean;
         abstract: boolean;
+        static: boolean;
         tag: string;
         slotTag: string;
     } & {
@@ -147,8 +147,8 @@ declare const _default: {
     }>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
-        static: boolean;
         abstract: boolean;
+        static: boolean;
         tag: string;
         slotTag: string;
     }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & {
@@ -159,19 +159,19 @@ declare const _default: {
             $: import("vue").ComponentInternalInstance;
             $data: {};
             $props: Partial<{
-                static: boolean;
                 abstract: boolean;
+                static: boolean;
                 tag: string;
                 slotTag: string;
             }> & Pick<Readonly<{
-                static: boolean;
                 abstract: boolean;
+                static: boolean;
                 tag: string;
                 slotTag: string;
             } & {
                 slotClass?: string | undefined;
                 slotId?: string | undefined;
-            }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "style" | "key" | "slotClass" | "slotId" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
+            }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "slotClass" | "slotId" | "key" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class" | "style">;
             $attrs: Record<string, unknown>;
             $refs: Record<string, unknown>;
             $slots: Readonly<{
@@ -182,8 +182,8 @@ declare const _default: {
             $emit: (event: string, ...args: any[]) => void;
             $el: any;
             $options: import("vue").ComponentOptionsBase<Readonly<{
-                static: boolean;
                 abstract: boolean;
+                static: boolean;
                 tag: string;
                 slotTag: string;
             } & {
@@ -192,17 +192,17 @@ declare const _default: {
             }>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
             }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
-                static: boolean;
                 abstract: boolean;
+                static: boolean;
                 tag: string;
                 slotTag: string;
             }>;
             $forceUpdate: import("vue").ReactiveEffect<any>;
             $nextTick: typeof import("vue").nextTick;
-            $watch(source: TimerHandler, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
+            $watch(source: string | Function, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
         } & Readonly<{
-            static: boolean;
             abstract: boolean;
+            static: boolean;
             tag: string;
             slotTag: string;
         } & {
@@ -215,8 +215,8 @@ declare const _default: {
         __isTeleport?: undefined;
         __isSuspense?: undefined;
     } & import("vue").ComponentOptionsBase<Readonly<{
-        static: boolean;
         abstract: boolean;
+        static: boolean;
         tag: string;
         slotTag: string;
     } & {
@@ -225,8 +225,8 @@ declare const _default: {
     }>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
-        static: boolean;
         abstract: boolean;
+        static: boolean;
         tag: string;
         slotTag: string;
     }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & {

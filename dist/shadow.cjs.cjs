@@ -104,4 +104,4 @@ exports.install = install;
 exports.makeShadow = makeShadow;
 exports.makeShadowRaw = makeShadowRaw;
 exports.shadow_root = ShadowRoot;
-//# sourceMappingURL=shadow.js.map
+//# sourceMappingURL=shadow.cjs.cjs.map

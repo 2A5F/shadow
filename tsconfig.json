@@ -5,8 +5,8 @@
         "outDir": "./tsout",
         "strict": true,
         "declaration": true,
-        "declarationDir": "./types",
         "moduleResolution": "node",
+        "sourceMap": true,
         "jsx": "react",
         "jsxFactory": "h",
         "jsxFragmentFactory": "Fragment"
