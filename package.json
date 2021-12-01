@@ -1,12 +1,12 @@
 {
   "name": "vue-shadow-dom",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Shadow dom support for Vue",
   "main": "shadow.js",
   "module": "shadow.mjs",
-  "umd::main": "./dist/shadow.js",
-  "browser": "./dist/shadow.min.js",
-  "unpkg": "./dist/shadow.min.js",
+  "umd::main": "./dist/shadow.global.js",
+  "browser": "./dist/shadow.global.prod.js",
+  "unpkg": "./dist/shadow.global.prod.js",
   "types": "./shadow.d.ts",
   "typings": "./shadow.d.ts",
   "files": [
