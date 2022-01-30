@@ -159,7 +159,7 @@ Will output
     </article>
     ```
 
-  - `style`
+  - `injected-style`
   - type: `String`
 
     Should provide css text, it will render a style tag inside the shadow root, put css style into effect.
@@ -168,7 +168,7 @@ Will output
 
     ```html
     <article>
-      <shadow-root :style="'p {color:red}'"><br /></shadow-root>
+      <shadow-root :injected-style="'p {color:red}'"><br /></shadow-root>
     </article>
     ```
 

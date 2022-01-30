@@ -24,7 +24,7 @@
         newApp('#nested')
         newApp('#abstract')
         newApp('#static')
-        newApp('#style')
+        newApp('#injectedStyle')
     </script>
 </head>
 
@@ -82,11 +82,11 @@
         </section>
     </div>
     <hr>
-    <div id="style">
-        <div>style</div>
+    <div id="injectedStyle">
+        <div>injectedStyle</div>
         <input v-model="value" type="number">
         <section>
-            <shadow-root v-if="value != 3" :style="'p {color:red}'">
+            <shadow-root v-if="value != 3" :injected-style="'p {color:red}'">
                 <p>exist</p>
                 <p v-if="value == 1">{{value}}</p>
             </shadow-root>

@@ -66,7 +66,7 @@ export const ShadowRoot = asInstall(
       slotId: {
         type: String,
       },
-      style: {
+      injectedStyle: {
         type: String,
       },
     },
@@ -96,8 +96,8 @@ export const ShadowRoot = asInstall(
               slots.default!()
             ) : (
               <props.slotTag id={props.slotId} class={props.slotClass}>
-                {props.style ? (
-                  <style type="text/css">{props.style}</style>
+                {props.injectedStyle ? (
+                  <style type="text/css">{props.injectedStyle}</style>
                 ) : (
                   ""
                 )}
