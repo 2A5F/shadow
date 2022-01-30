@@ -159,7 +159,7 @@ Will output
     </article>
     ```
 
-  - `injected-style`
+  - `injectedStyle `
   - type: `String`
 
     Should provide css text, it will render a style tag inside the shadow root, put css style into effect.
