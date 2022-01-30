@@ -62,7 +62,7 @@
           slotId: {
               type: String,
           },
-          style: {
+          injectedStyle: {
               type: String,
           },
       },
@@ -84,7 +84,7 @@
           });
           return () => (vue.h(props.tag, { ref: el }, [
               static_.value ? (slots.default()) : (vue.h(props.slotTag, { id: props.slotId, class: props.slotClass },
-                  props.style ? (vue.h("style", { type: "text/css" }, props.style)) : (""),
+                  props.injectedStyle ? (vue.h("style", { type: "text/css" }, props.injectedStyle)) : (""),
                   [slots.default()])),
           ]));
       },

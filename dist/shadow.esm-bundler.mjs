@@ -58,7 +58,7 @@ const ShadowRoot = asInstall(defineComponent({
         slotId: {
             type: String,
         },
-        style: {
+        injectedStyle: {
             type: String,
         },
     },
@@ -80,7 +80,7 @@ const ShadowRoot = asInstall(defineComponent({
         });
         return () => (h(props.tag, { ref: el }, [
             static_.value ? (slots.default()) : (h(props.slotTag, { id: props.slotId, class: props.slotClass },
-                props.style ? (h("style", { type: "text/css" }, props.style)) : (""),
+                props.injectedStyle ? (h("style", { type: "text/css" }, props.injectedStyle)) : (""),
                 [slots.default()])),
         ]));
     },
