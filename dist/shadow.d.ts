@@ -1,4 +1,4 @@
-import type { App, VNode } from 'vue';
+import type { App, VNode } from "vue";
 export declare function makeShadow(el: Element): ShadowRoot | undefined;
 export declare function makeShadowRaw(rootEl: Element, childNodes: NodeList): ShadowRoot | undefined;
 export declare const ShadowRoot: {
@@ -18,7 +18,8 @@ export declare const ShadowRoot: {
         } & {
             slotClass?: string | undefined;
             slotId?: string | undefined;
-        }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "slotClass" | "slotId" | "key" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class" | "style">;
+            style?: string | undefined;
+        }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "slotClass" | "slotId" | "style" | "key" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
         $attrs: Record<string, unknown>;
         $refs: Record<string, unknown>;
         $slots: Readonly<{
@@ -36,6 +37,7 @@ export declare const ShadowRoot: {
         } & {
             slotClass?: string | undefined;
             slotId?: string | undefined;
+            style?: string | undefined;
         }>, () => VNode, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
             abstract: boolean;
             static: boolean;
@@ -53,6 +55,7 @@ export declare const ShadowRoot: {
     } & {
         slotClass?: string | undefined;
         slotId?: string | undefined;
+        style?: string | undefined;
     }> & import("vue").ShallowUnwrapRef<() => VNode> & {} & import("vue").ComponentCustomProperties;
     __isFragment?: undefined;
     __isTeleport?: undefined;
@@ -65,6 +68,7 @@ export declare const ShadowRoot: {
 } & {
     slotClass?: string | undefined;
     slotId?: string | undefined;
+    style?: string | undefined;
 }>, () => VNode, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
     abstract: boolean;
     static: boolean;
@@ -93,7 +97,8 @@ declare const _default: {
             } & {
                 slotClass?: string | undefined;
                 slotId?: string | undefined;
-            }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "slotClass" | "slotId" | "key" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class" | "style">;
+                style?: string | undefined;
+            }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "slotClass" | "slotId" | "style" | "key" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
             $attrs: Record<string, unknown>;
             $refs: Record<string, unknown>;
             $slots: Readonly<{
@@ -111,6 +116,7 @@ declare const _default: {
             } & {
                 slotClass?: string | undefined;
                 slotId?: string | undefined;
+                style?: string | undefined;
             }>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
             }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
@@ -130,6 +136,7 @@ declare const _default: {
         } & {
             slotClass?: string | undefined;
             slotId?: string | undefined;
+            style?: string | undefined;
         }> & import("vue").ShallowUnwrapRef<() => VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
         }>> & {} & import("vue").ComponentCustomProperties;
@@ -144,6 +151,7 @@ declare const _default: {
     } & {
         slotClass?: string | undefined;
         slotId?: string | undefined;
+        style?: string | undefined;
     }>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
@@ -171,7 +179,8 @@ declare const _default: {
             } & {
                 slotClass?: string | undefined;
                 slotId?: string | undefined;
-            }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "slotClass" | "slotId" | "key" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class" | "style">;
+                style?: string | undefined;
+            }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "slotClass" | "slotId" | "style" | "key" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
             $attrs: Record<string, unknown>;
             $refs: Record<string, unknown>;
             $slots: Readonly<{
@@ -189,6 +198,7 @@ declare const _default: {
             } & {
                 slotClass?: string | undefined;
                 slotId?: string | undefined;
+                style?: string | undefined;
             }>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
             }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
@@ -208,6 +218,7 @@ declare const _default: {
         } & {
             slotClass?: string | undefined;
             slotId?: string | undefined;
+            style?: string | undefined;
         }> & import("vue").ShallowUnwrapRef<() => VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
         }>> & {} & import("vue").ComponentCustomProperties;
@@ -222,6 +233,7 @@ declare const _default: {
     } & {
         slotClass?: string | undefined;
         slotId?: string | undefined;
+        style?: string | undefined;
     }>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {

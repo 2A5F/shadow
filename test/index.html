@@ -4,9 +4,9 @@
     <meta charset=utf8>
     <title>test</title>
     <script src="../node_modules/vue/dist/vue.global.js"></script>
-    <script src="../dist/shadow.js"></script>
+    <script src="../shadow.dev.js"></script>
     <script defer>
-        function newApp(el){
+        function newApp(el) {
             document.addEventListener('DOMContentLoaded', () => {
                 const app = Vue.createApp({
                     data() {
@@ -24,6 +24,7 @@
         newApp('#nested')
         newApp('#abstract')
         newApp('#static')
+        newApp('#style')
     </script>
 </head>
 
@@ -75,6 +76,17 @@
         <input v-model="value" type="number">
         <section>
             <shadow-root v-if="value != 3" :static=true>
+                <p>exist</p>
+                <p v-if="value == 1">{{value}}</p>
+            </shadow-root>
+        </section>
+    </div>
+    <hr>
+    <div id="style">
+        <div>style</div>
+        <input v-model="value" type="number">
+        <section>
+            <shadow-root v-if="value != 3" :style="'p {color:red}'">
                 <p>exist</p>
                 <p v-if="value == 1">{{value}}</p>
             </shadow-root>

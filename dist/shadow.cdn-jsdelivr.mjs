@@ -11,17 +11,17 @@ function makeShadowRaw(rootEl, childNodes) {
         }
         const oldroot = rootEl.shadowRoot;
         if (oldroot != null) {
-            console.error('[shadow] Attach shadow multiple times', rootEl, childNodes, oldroot);
+            console.error("[shadow] Attach shadow multiple times", rootEl, childNodes, oldroot);
             return;
         }
         else {
-            const shadowroot = rootEl.attachShadow({ mode: 'open' });
+            const shadowroot = rootEl.attachShadow({ mode: "open" });
             shadowroot.appendChild(fragment);
             return shadowroot;
         }
     }
     catch (e) {
-        console.error('[shadow] make shadow-root failed', rootEl, childNodes);
+        console.error("[shadow] make shadow-root failed", rootEl, childNodes);
         console.error(e);
     }
 }
@@ -38,7 +38,7 @@ const ShadowRoot = asInstall(defineComponent({
     props: {
         abstract: {
             type: Boolean,
-            default: false
+            default: false,
         },
         static: {
             type: Boolean,
@@ -46,18 +46,21 @@ const ShadowRoot = asInstall(defineComponent({
         },
         tag: {
             type: String,
-            default: 'div',
+            default: "div",
         },
         slotTag: {
             type: String,
-            default: 'div',
+            default: "div",
         },
         slotClass: {
             type: String,
         },
         slotId: {
-            type: String
-        }
+            type: String,
+        },
+        style: {
+            type: String,
+        },
     },
     setup(props, { slots }) {
         const abstract = ref(false);
@@ -75,9 +78,11 @@ const ShadowRoot = asInstall(defineComponent({
                 makeShadow(el.value);
             }
         });
-        return () => h(props.tag, { ref: el }, [
-            static_.value ? slots.default() : h(props.slotTag, { id: props.slotId, class: props.slotClass }, [slots.default()])
-        ]);
+        return () => (h(props.tag, { ref: el }, [
+            static_.value ? (slots.default()) : (h(props.slotTag, { id: props.slotId, class: props.slotClass },
+                props.style ? (h("style", { type: "text/css" }, props.style)) : (""),
+                [slots.default()])),
+        ]));
     },
     install,
 }));
@@ -85,11 +90,11 @@ function asInstall(obj) {
     return obj;
 }
 function install(app) {
-    app.component('shadow-root', ShadowRoot);
-    app.directive('shadow', {
+    app.component("shadow-root", ShadowRoot);
+    app.directive("shadow", {
         beforeMount(el) {
             makeShadow(el);
-        }
+        },
     });
 }
 var shadow = { ShadowRoot, shadow_root: ShadowRoot, install };
