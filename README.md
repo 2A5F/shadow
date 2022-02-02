@@ -192,6 +192,19 @@ Usage:
     const shadow_root: ShadowRoot = ex.shadow_root
     ```
 
+- `shadow-style`  
+  Usage:  
+  
+  ```html
+  <shadow-style></shadow-style>
+  <!-- or -->
+  <ShadowRoot.Style></ShadowRoot.Style>
+  ```
+
+  Same to html `style`  
+
+  The reason it exists is that vue SFC disabled style tag
+
 - `v-shadow`  
   v-shadow will also cause the first level tag to be unrecoverable  
   Unless you know what you are doing, don't use  
