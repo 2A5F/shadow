@@ -36,58 +36,68 @@ export function makeShadowRaw(rootEl: Element, childNodes: NodeList) {
 //     return newroot
 // }
 
-export const ShadowRoot = asInstall(defineComponent({
-    props: {
-        abstract: {
-            type: Boolean,
-            default: false
+export const ShadowRoot = asInstall(
+    defineComponent({
+        props: {
+            abstract: {
+                type: Boolean,
+                default: false,
+            },
+            static: {
+                type: Boolean,
+                default: false,
+            },
+            tag: {
+                type: String,
+                default: 'div',
+            },
+            slotTag: {
+                type: String,
+                default: 'div',
+            },
+            slotClass: {
+                type: String,
+            },
+            slotId: {
+                type: String,
+            },
         },
-        static: {
-            type: Boolean,
-            default: false,
-        },
-        tag: {
-            type: String,
-            default: 'div',
-        },
-        slotTag: {
-            type: String,
-            default: 'div',
-        },
-        slotClass: {
-            type: String,
-        },
-        slotId: {
-            type: String
-        }
-    },
-    setup(props, { slots }) {
-        const abstract = ref(false)
-        const static_ = ref(false)
+        setup(props, { slots }) {
+            const abstract = ref(false)
+            const static_ = ref(false)
 
-        const el = ref<HTMLElement>()
+            const el = ref<HTMLElement>()
 
-        onBeforeMount(() => {
-            abstract.value = props.abstract
-            static_.value = props.static
-        })
+            onBeforeMount(() => {
+                abstract.value = props.abstract
+                static_.value = props.static
+            })
 
-        onMounted(() => {
-            if (abstract.value) {
-                makeShadowRaw(el.value!.parentElement!, el.value!.childNodes)
-            } else {
-                makeShadow(el.value!)
-            }
-        })
+            onMounted(() => {
+                if (abstract.value) {
+                    makeShadowRaw(el.value!.parentElement!, el.value!.childNodes)
+                } else {
+                    makeShadow(el.value!)
+                }
+            })
 
-        return (): VNode => <props.tag ref={el}>{[
-            static_.value ? slots.default!() : <props.slotTag id={props.slotId} class={props.slotClass}>
-                {[slots.default!()]}
-            </props.slotTag>
-        ]}</props.tag>
-    },
-    install,
-}))
+            return (): VNode => (
+                <props.tag ref={el}>
+                    {[
+                        static_.value ? (
+                            slots.default!()
+                        ) : (
+                            <props.slotTag id={props.slotId} class={props.slotClass}>
+                                {[slots.default!()]}
+                            </props.slotTag>
+                        ),
+                    ]}
+                </props.tag>
+            )
+        },
+        install,
+    })
+)
 
 function asInstall<T>(obj: T): T & { install: typeof install } {
     return obj as any
@@ -99,7 +109,7 @@ export function install(app: App) {
     app.directive('shadow', {
         beforeMount(el: HTMLElement) {
             makeShadow(el)
-        }
+        },
     })
 }
 

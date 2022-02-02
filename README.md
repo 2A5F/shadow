@@ -17,24 +17,67 @@ npm i vue-shadow-dom
 ---
 ```html
 <head>
-  <script src='vue.js'></script>
-
-  <script src='../path/to/shadow.js'></script>
-  or
-  <script src='../path/to/shadow.mjs' type=module></script>
+  <script src="vue.js"></script>
+  <script src="../path/to/shadow.global.js"></script>
   
   <script>
-  const app = Vue.createApp(...)
-  app.use(shadow)
+    const app = Vue.createApp(...)
+    app.use(shadow)
   </script>
 </head>
 ```
 or
 ```typescript
 import shadow from 'vue-shadow-dom'
+
 const app = Vue.createApp(...)
 app.use(shadow)
 ```
+### Files
+- `dist/shadow.global.js`  
+  For UMD
+  ```html
+  <script src="vue.js"></script>
+  <script src="../path/to/shadow.global.js"></script>
+  ```
+- `dist/shadow.esm-browser.mjs` | `dist/shadow.esm-browser.prod.mjs`  
+  For browser import, when Vue from global
+  ```html
+  <script src="vue.js"></script>
+  <link rel="modulepreload" href="../path/to/shadow.esm-browser.mjs" />
+  <script type="module">
+    import shadow from '../path/to/shadow.esm-browser.mjs'
+  </script>
+  ```
+- `dist/shadow.cdn-jsdelivr.mjs` | `shadow.cdn-jsdelivr.prod.mjs`  
+  For browser import, when Vue from cdn
+  ```html
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.runtime.esm-browser.js" />
+  <link rel="modulepreload" href="shadow.cdn-jsdelivr.mjs" />
+  <script type="module">
+    import shadow from 'shadow.cdn-jsdelivr.mjs'
+  </script>
+  ```
+- `dist/shadow.esm-bundler.mjs` | `dist/shadow.esm-bundler.prod.mjs`  
+  For packaging tool  
+  ```js
+  import shadow from '../path/to/shadow.esm-bundler.mjs'
+  ```
+- `dist/shadow.cjs.cjs` | `dist/shadow.cjs.prod.cjs`  
+  For node cjs  
+  ```js
+  const shadow = require('../path/to/shadow.cjs.prod.cjs') 
+  ```
+- `shadow.js`  
+  For node cjs  
+  ```js
+  const shadow = require('vue-shadow-dom') 
+  ```
+- `shadow.mjs`  
+  For node esm  
+  ```js
+  import shadow from 'vue-shadow-dom'
+  ```
 ---
 ```html
 <div v-shadow id=app>
@@ -96,7 +139,7 @@ Usage:
     It will make other external tags unavailable
     ```html
     <article>
-      <shadow-root :abstract=true><br></shadow-root>
+      <shadow-root abstract><br></shadow-root>
     </article>
     ```
     ```html
@@ -111,7 +154,7 @@ Usage:
     If you destroy the first level tag in the #shadow-root will not be restored
     ```html
     <article>
-      <shadow-root :static=true><br></shadow-root>
+      <shadow-root static><br></shadow-root>
     </article>
     ```
     ```html
@@ -126,7 +169,7 @@ Usage:
   - `tag`
     ```html
     <article>
-      <shadow-root :tag='section'><br></shadow-root>
+      <shadow-root tag="section"><br></shadow-root>
     </article>
     ```
     ```html
@@ -142,7 +185,7 @@ Usage:
   - `slotTag`、`slotClass`、`slotId`
     ```html
     <article>
-      <shadow-root :slotTag='section' :slotClass='slotclass' :slotId='slotid'><br></shadow-root>
+      <shadow-root slot-tag="section" slot-class="slotclass" slot-id="slotid"><br></shadow-root>
     </article>
     ```
     ```html

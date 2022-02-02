@@ -9,11 +9,8 @@
         "sourceMap": true,
         "jsx": "react",
         "jsxFactory": "h",
-        "jsxFragmentFactory": "Fragment"
+        "jsxFragmentFactory": "Fragment",
+        "forceConsistentCasingInFileNames": true
     },
-    "include": [
-        "./jsx.d.ts",
-        "src/**/*.ts", 
-        "src/**/*.tsx",
-    ],
+    "include": ["./jsx.d.ts", "src/**/*.ts", "src/**/*.tsx"]
 }
