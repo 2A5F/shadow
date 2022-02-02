@@ -121,8 +121,6 @@ Usage:
   - `abstract`
     - type: `boolean`
     - default: `false`
- 
-    Unless you know what you are doing, don't modify this
 
     it change the location of the #shadow-root  
     it should not be dynamically changed  
@@ -177,7 +175,7 @@ Usage:
 
   ### Expose
 
-  ```typescript
+    ```typescript
     const ex = ref<ShadowRootExpose>()
     ```
     ```html
@@ -206,9 +204,6 @@ Usage:
   The reason it exists is that vue SFC disabled style tag
 
 - `v-shadow`  
-  v-shadow will also cause the first level tag to be unrecoverable  
-  Unless you know what you are doing, don't use  
-
   Usage: 
   ```html
   <div v-shadow></div>
