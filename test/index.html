@@ -3,83 +3,17 @@
 <head>
     <meta charset=utf8>
     <title>test</title>
-    <script src="../node_modules/vue/dist/vue.global.js"></script>
-    <script src="../dist/shadow.global.js"></script>
-    <script defer>
-        function newApp(el) {
-            document.addEventListener('DOMContentLoaded', () => {
-                const app = Vue.createApp({
-                    data() {
-                        return { value: 1 }
-                    }
-                })
-
-                app.use(shadow)
-
-                app.mount(el)
-            })
-        }
-        newApp('#vshadow')
-        newApp('#app')
-        newApp('#nested')
-        newApp('#abstract')
-        newApp('#static')
-    </script>
+    <script type="module" src="./index.ts" defer></script>
 </head>
 
 <body>
-    <div id="vshadow">
-        <div>v-shadow</div>
-        <input v-model="value" type="number">
-        <section v-shadow v-if="value != 3">
-            <article v-if="value == 1">
-                <p>exist</p>
-                <p>{{value}}</p>
-            </article>
-        </section>
-    </div>
+    <div id="vshadow"></div>
     <hr>
-    <div id="app">
-        <div>default</div>
-        <input v-model="value" type="number">
-        <shadow-root v-if="value != 3">
-            <p>exist</p>
-            <p v-if="value == 1">{{value}}</p>
-        </shadow-root>
-    </div>
+    <div id="app"></div>
     <hr>
-    <div id="nested">
-        <div>nested</div>
-        <input v-model="value" type="number">
-        <shadow-root>
-            <shadow-root v-if="value != 3">
-                <p>exist</p>
-                <p v-if="value == 1">{{value}}</p>
-            </shadow-root>
-        </shadow-root>
-    </div>
+    <div id="nested"></div>
     <hr>
-    <div id="abstract">
-        <div>abstract</div>
-        <input v-model="value" type="number">
-        <section>
-            <shadow-root v-if="value != 3" :abstract=true>
-                <p>exist</p>
-                <p v-if="value == 1">{{value}}</p>
-            </shadow-root>
-        </section>
-    </div>
-    <hr>
-    <div id="static">
-        <div>static</div>
-        <input v-model="value" type="number">
-        <section>
-            <shadow-root v-if="value != 3" :static=true>
-                <p>exist</p>
-                <p v-if="value == 1">{{value}}</p>
-            </shadow-root>
-        </section>
-    </div>
+    <div id="abstract"></div>
 </body>
 
 </html>

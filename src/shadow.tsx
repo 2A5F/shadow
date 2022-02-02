@@ -1,24 +1,21 @@
-import { defineComponent, h, ref, onBeforeMount, onMounted } from 'vue'
+import { defineComponent, h, ref, Teleport, onBeforeMount, onMounted, computed, reactive } from 'vue'
 import type { App, VNode } from 'vue'
+
+type GShadowRoot = typeof global.ShadowRoot.prototype
 
 export function makeShadow(el: Element) {
     return makeShadowRaw(el, el.childNodes)
 }
-export function makeShadowRaw(rootEl: Element, childNodes: NodeList) {
+export function makeShadowRaw(rootEl: Element, childNodes?: Iterable<Node>) {
     try {
-        const fragment = document.createDocumentFragment()
-        for (const node of childNodes) {
-            fragment.appendChild(node)
-        }
-
         const oldroot = rootEl.shadowRoot
         if (oldroot != null) {
             console.error('[shadow] Attach shadow multiple times', rootEl, childNodes, oldroot)
             return
         } else {
-            const shadowroot = rootEl.attachShadow({ mode: 'open' })
-            shadowroot.appendChild(fragment)
-            return shadowroot
+            const shadow_root = rootEl.attachShadow({ mode: 'open' })
+            if (childNodes) putDomIntoShadow(shadow_root, childNodes)
+            return shadow_root
         }
     } catch (e) {
         console.error('[shadow] make shadow-root failed', rootEl, childNodes)
@@ -36,14 +33,41 @@ export function makeShadowRaw(rootEl: Element, childNodes: NodeList) {
 //     return newroot
 // }
 
-export const ShadowRoot = asInstall(
+function putDomIntoShadow(shadow_root: GShadowRoot, childNodes: Iterable<Node>) {
+    const fragment = document.createDocumentFragment()
+    for (const node of childNodes) {
+        fragment.appendChild(node)
+    }
+    shadow_root.appendChild(fragment)
+}
+
+const virtual_root = document.createDocumentFragment()
+
+export const ShadowStyle = defineComponent({
+    props: {
+        media: String,
+        nonce: String,
+    },
+    setup(props, { slots }) {
+        return (): VNode => (
+            <style media={props.media} nonce={props.nonce}>
+                {slots.default?.()}
+            </style>
+        )
+    },
+})
+
+export interface ShadowRootExpose {
+    shadow_root?: GShadowRoot
+}
+
+export const ShadowRoot = withType<{
+    install: typeof install
+    Style: typeof ShadowStyle
+}>()(
     defineComponent({
         props: {
             abstract: {
-                type: Boolean,
-                default: false,
-            },
-            static: {
                 type: Boolean,
                 default: false,
             },
@@ -51,56 +75,54 @@ export const ShadowRoot = asInstall(
                 type: String,
                 default: 'div',
             },
-            slotTag: {
-                type: String,
-                default: 'div',
-            },
-            slotClass: {
-                type: String,
-            },
-            slotId: {
-                type: String,
-            },
         },
-        setup(props, { slots }) {
+        setup(props, { slots, expose }) {
             const abstract = ref(false)
-            const static_ = ref(false)
 
             const el = ref<HTMLElement>()
+            const teleport_el = ref<HTMLElement>()
+            const shadow_root = ref<GShadowRoot>()
+
+            const teleport_target = computed(() => shadow_root.value ?? virtual_root)
+
+            const ex: ShadowRootExpose = reactive({
+                shadow_root,
+            })
+            expose(ex)
 
             onBeforeMount(() => {
                 abstract.value = props.abstract
-                static_.value = props.static
             })
 
             onMounted(() => {
                 if (abstract.value) {
-                    makeShadowRaw(el.value!.parentElement!, el.value!.childNodes)
+                    if (teleport_el.value!.parentElement!.shadowRoot) {
+                        shadow_root.value = teleport_el.value!.parentElement!.shadowRoot
+                    } else {
+                        shadow_root.value = makeShadowRaw(teleport_el.value!.parentElement!)
+                    }
                 } else {
-                    makeShadow(el.value!)
+                    shadow_root.value = makeShadowRaw(el.value!)
                 }
             })
 
-            return (): VNode => (
-                <props.tag ref={el}>
-                    {[
-                        static_.value ? (
-                            slots.default!()
-                        ) : (
-                            <props.slotTag id={props.slotId} class={props.slotClass}>
-                                {[slots.default!()]}
-                            </props.slotTag>
-                        ),
-                    ]}
-                </props.tag>
-            )
+            return (): VNode => {
+                const child_part = (
+                    <Teleport ref={teleport_el} to={teleport_target.value}>
+                        {[slots.default?.()]}
+                    </Teleport>
+                )
+                if (abstract.value) return child_part
+                return <props.tag ref={el}>{child_part}</props.tag>
+            }
         },
         install,
+        Style: ShadowStyle,
     })
 )
 
-function asInstall<T>(obj: T): T & { install: typeof install } {
-    return obj as any
+function withType<W>(): <T>(obj: T) => T & W {
+    return obj => obj as any
 }
 
 export function install(app: App) {
@@ -113,5 +135,5 @@ export function install(app: App) {
     })
 }
 
-export { ShadowRoot as shadow_root }
-export default { ShadowRoot, shadow_root: ShadowRoot, install }
+export { ShadowRoot as shadow_root, ShadowStyle as shadow_style }
+export default { ShadowRoot, ShadowStyle, shadow_root: ShadowRoot, shadow_style: ShadowStyle, install }

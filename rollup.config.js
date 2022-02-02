@@ -145,8 +145,8 @@ export default [
         plugins: [
             typescript(),
             virtual({
-                vue: `const { defineComponent, h, ref, onBeforeMount, onMounted } = globalThis.Vue;
-export { defineComponent, h, ref, onBeforeMount, onMounted }`
+                vue: `const { defineComponent, h, ref, Teleport, onBeforeMount, onMounted, computed, reactive } = globalThis.Vue;
+export { defineComponent, h, ref, Teleport, onBeforeMount, onMounted, computed, reactive }`
             }),
         ]
     },
@@ -163,8 +163,8 @@ export { defineComponent, h, ref, onBeforeMount, onMounted }`
         plugins: [
             typescript(),
             virtual({
-                vue: `const { defineComponent, h, ref, onBeforeMount, onMounted } = globalThis.Vue;
-export { defineComponent, h, ref, onBeforeMount, onMounted }`
+                vue: `const { defineComponent, h, ref, Teleport, onBeforeMount, onMounted, computed, reactive } = globalThis.Vue;
+export { defineComponent, h, ref, Teleport, onBeforeMount, onMounted, computed, reactive }`
             }),
             terser(),
         ]

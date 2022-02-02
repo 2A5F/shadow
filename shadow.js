@@ -9,19 +9,16 @@ function makeShadow(el) {
 }
 function makeShadowRaw(rootEl, childNodes) {
     try {
-        const fragment = document.createDocumentFragment();
-        for (const node of childNodes) {
-            fragment.appendChild(node);
-        }
         const oldroot = rootEl.shadowRoot;
         if (oldroot != null) {
             console.error('[shadow] Attach shadow multiple times', rootEl, childNodes, oldroot);
             return;
         }
         else {
-            const shadowroot = rootEl.attachShadow({ mode: 'open' });
-            shadowroot.appendChild(fragment);
-            return shadowroot;
+            const shadow_root = rootEl.attachShadow({ mode: 'open' });
+            if (childNodes)
+                putDomIntoShadow(shadow_root, childNodes);
+            return shadow_root;
         }
     }
     catch (e) {
@@ -38,13 +35,26 @@ function makeShadowRaw(rootEl, childNodes) {
 //     console.log('removeShadow', newroot)
 //     return newroot
 // }
-const ShadowRoot = asInstall(vue.defineComponent({
+function putDomIntoShadow(shadow_root, childNodes) {
+    const fragment = document.createDocumentFragment();
+    for (const node of childNodes) {
+        fragment.appendChild(node);
+    }
+    shadow_root.appendChild(fragment);
+}
+const virtual_root = document.createDocumentFragment();
+const ShadowStyle = vue.defineComponent({
+    props: {
+        media: String,
+        nonce: String,
+    },
+    setup(props, { slots }) {
+        return () => (vue.h("style", { media: props.media, nonce: props.nonce }, slots.default?.()));
+    },
+});
+const ShadowRoot = withType()(vue.defineComponent({
     props: {
         abstract: {
-            type: Boolean,
-            default: false
-        },
-        static: {
             type: Boolean,
             default: false,
         },
@@ -52,56 +62,62 @@ const ShadowRoot = asInstall(vue.defineComponent({
             type: String,
             default: 'div',
         },
-        slotTag: {
-            type: String,
-            default: 'div',
-        },
-        slotClass: {
-            type: String,
-        },
-        slotId: {
-            type: String
-        }
     },
-    setup(props, { slots }) {
+    setup(props, { slots, expose }) {
         const abstract = vue.ref(false);
-        const static_ = vue.ref(false);
         const el = vue.ref();
+        const teleport_el = vue.ref();
+        const shadow_root = vue.ref();
+        const teleport_target = vue.computed(() => shadow_root.value ?? virtual_root);
+        const ex = vue.reactive({
+            shadow_root,
+        });
+        expose(ex);
         vue.onBeforeMount(() => {
             abstract.value = props.abstract;
-            static_.value = props.static;
         });
         vue.onMounted(() => {
             if (abstract.value) {
-                makeShadowRaw(el.value.parentElement, el.value.childNodes);
+                if (teleport_el.value.parentElement.shadowRoot) {
+                    shadow_root.value = teleport_el.value.parentElement.shadowRoot;
+                }
+                else {
+                    shadow_root.value = makeShadowRaw(teleport_el.value.parentElement);
+                }
             }
             else {
-                makeShadow(el.value);
+                shadow_root.value = makeShadowRaw(el.value);
             }
         });
-        return () => vue.h(props.tag, { ref: el }, [
-            static_.value ? slots.default() : vue.h(props.slotTag, { id: props.slotId, class: props.slotClass }, [slots.default()])
-        ]);
+        return () => {
+            const child_part = (vue.h(vue.Teleport, { ref: teleport_el, to: teleport_target.value }, [slots.default?.()]));
+            if (abstract.value)
+                return child_part;
+            return vue.h(props.tag, { ref: el }, child_part);
+        };
     },
     install,
+    Style: ShadowStyle,
 }));
-function asInstall(obj) {
-    return obj;
+function withType() {
+    return obj => obj;
 }
 function install(app) {
     app.component('shadow-root', ShadowRoot);
     app.directive('shadow', {
         beforeMount(el) {
             makeShadow(el);
-        }
+        },
     });
 }
-var shadow = { ShadowRoot, shadow_root: ShadowRoot, install };
+var shadow = { ShadowRoot, ShadowStyle, shadow_root: ShadowRoot, shadow_style: ShadowStyle, install };
 
 exports.ShadowRoot = ShadowRoot;
-exports.default = shadow;
+exports.ShadowStyle = ShadowStyle;
+exports["default"] = shadow;
 exports.install = install;
 exports.makeShadow = makeShadow;
 exports.makeShadowRaw = makeShadowRaw;
 exports.shadow_root = ShadowRoot;
+exports.shadow_style = ShadowStyle;
 //# sourceMappingURL=shadow.js.map

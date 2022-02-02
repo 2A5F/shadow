@@ -1,5 +1,4 @@
 {
-// 有关 tasks.json 格式的文档，请参见
     // https://go.microsoft.com/fwlink/?LinkId=733558
     "version": "2.0.0",
     "tasks": [
@@ -7,7 +6,8 @@
             "type": "npm",
             "script": "build",
             "group": "build",
-            "problemMatcher": []
+            "problemMatcher": [],
+            "detail": "tsc -w"
         },
         {
             "type": "npm",
@@ -15,6 +15,28 @@
             "problemMatcher": [],
             "label": "npm: tsc:dev",
             "detail": "tsc -w"
+        },
+        {
+            "type": "npm",
+            "script": "test:dev",
+            "problemMatcher": [],
+            "label": "npm: test:dev",
+            "detail": "vite"
+        },
+        {
+            "type": "npm",
+            "script": "test:build",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "npm: test:build",
+            "detail": "vite build"
+        },
+        {
+            "type": "npm",
+            "script": "test:preview",
+            "problemMatcher": [],
+            "label": "npm: test:preview",
+            "detail": "vite preview"
         }
     ]
 }

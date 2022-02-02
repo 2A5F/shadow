@@ -1,24 +1,34 @@
 import type { App, VNode } from 'vue';
+declare type GShadowRoot = typeof global.ShadowRoot.prototype;
 export declare function makeShadow(el: Element): ShadowRoot | undefined;
-export declare function makeShadowRaw(rootEl: Element, childNodes: NodeList): ShadowRoot | undefined;
+export declare function makeShadowRaw(rootEl: Element, childNodes?: Iterable<Node>): ShadowRoot | undefined;
+export declare const ShadowStyle: import("vue").DefineComponent<{
+    media: StringConstructor;
+    nonce: StringConstructor;
+}, () => VNode, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    media: StringConstructor;
+    nonce: StringConstructor;
+}>>, {}>;
+export interface ShadowRootExpose {
+    shadow_root?: GShadowRoot;
+}
 export declare const ShadowRoot: {
     new (...args: any[]): {
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: Partial<{
             abstract: boolean;
-            static: boolean;
             tag: string;
-            slotTag: string;
-        }> & Pick<Readonly<{
-            abstract: boolean;
-            static: boolean;
-            tag: string;
-            slotTag: string;
-        } & {
-            slotClass?: string | undefined;
-            slotId?: string | undefined;
-        }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "slotClass" | "slotId" | "key" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class" | "style">;
+        }> & Pick<Readonly<import("vue").ExtractPropTypes<{
+            abstract: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
+            tag: {
+                type: StringConstructor;
+                default: string;
+            };
+        }>> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
         $attrs: Record<string, unknown>;
         $refs: Record<string, unknown>;
         $slots: Readonly<{
@@ -28,53 +38,69 @@ export declare const ShadowRoot: {
         $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
         $emit: (event: string, ...args: any[]) => void;
         $el: any;
-        $options: import("vue").ComponentOptionsBase<Readonly<{
+        $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+            abstract: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
+            tag: {
+                type: StringConstructor;
+                default: string;
+            };
+        }>>, () => VNode, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
             abstract: boolean;
-            static: boolean;
             tag: string;
-            slotTag: string;
-        } & {
-            slotClass?: string | undefined;
-            slotId?: string | undefined;
-        }>, () => VNode, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
-            abstract: boolean;
-            static: boolean;
-            tag: string;
-            slotTag: string;
-        }>;
-        $forceUpdate: import("vue").ReactiveEffect<any>;
+        }> & {
+            beforeCreate?: (() => void) | (() => void)[] | undefined;
+            created?: (() => void) | (() => void)[] | undefined;
+            beforeMount?: (() => void) | (() => void)[] | undefined;
+            mounted?: (() => void) | (() => void)[] | undefined;
+            beforeUpdate?: (() => void) | (() => void)[] | undefined;
+            updated?: (() => void) | (() => void)[] | undefined;
+            activated?: (() => void) | (() => void)[] | undefined;
+            deactivated?: (() => void) | (() => void)[] | undefined;
+            beforeDestroy?: (() => void) | (() => void)[] | undefined;
+            beforeUnmount?: (() => void) | (() => void)[] | undefined;
+            destroyed?: (() => void) | (() => void)[] | undefined;
+            unmounted?: (() => void) | (() => void)[] | undefined;
+            renderTracked?: ((e: import("vue").DebuggerEvent) => void) | ((e: import("vue").DebuggerEvent) => void)[] | undefined;
+            renderTriggered?: ((e: import("vue").DebuggerEvent) => void) | ((e: import("vue").DebuggerEvent) => void)[] | undefined;
+            errorCaptured?: ((err: unknown, instance: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null, info: string) => boolean | void) | ((err: unknown, instance: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null, info: string) => boolean | void)[] | undefined;
+        };
+        $forceUpdate: () => void;
         $nextTick: typeof import("vue").nextTick;
         $watch(source: string | Function, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
-    } & Readonly<{
-        abstract: boolean;
-        static: boolean;
-        tag: string;
-        slotTag: string;
-    } & {
-        slotClass?: string | undefined;
-        slotId?: string | undefined;
-    }> & import("vue").ShallowUnwrapRef<() => VNode> & {} & import("vue").ComponentCustomProperties;
+    } & Readonly<import("vue").ExtractPropTypes<{
+        abstract: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        tag: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>> & import("vue").ShallowUnwrapRef<() => VNode> & {} & {} & import("vue").ComponentCustomProperties;
     __isFragment?: undefined;
     __isTeleport?: undefined;
     __isSuspense?: undefined;
-} & import("vue").ComponentOptionsBase<Readonly<{
+} & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+    abstract: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    tag: {
+        type: StringConstructor;
+        default: string;
+    };
+}>>, () => VNode, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
     abstract: boolean;
-    static: boolean;
     tag: string;
-    slotTag: string;
-} & {
-    slotClass?: string | undefined;
-    slotId?: string | undefined;
-}>, () => VNode, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
-    abstract: boolean;
-    static: boolean;
-    tag: string;
-    slotTag: string;
 }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & {
     install: typeof install;
+    Style: typeof ShadowStyle;
 };
 export declare function install(app: App): void;
-export { ShadowRoot as shadow_root };
+export { ShadowRoot as shadow_root, ShadowStyle as shadow_style };
 declare const _default: {
     ShadowRoot: {
         new (...args: any[]): {
@@ -82,18 +108,17 @@ declare const _default: {
             $data: {};
             $props: Partial<{
                 abstract: boolean;
-                static: boolean;
                 tag: string;
-                slotTag: string;
-            }> & Pick<Readonly<{
-                abstract: boolean;
-                static: boolean;
-                tag: string;
-                slotTag: string;
-            } & {
-                slotClass?: string | undefined;
-                slotId?: string | undefined;
-            }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "slotClass" | "slotId" | "key" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class" | "style">;
+            }> & Pick<Readonly<import("vue").ExtractPropTypes<{
+                abstract: {
+                    type: BooleanConstructor;
+                    default: boolean;
+                };
+                tag: {
+                    type: StringConstructor;
+                    default: string;
+                };
+            }>> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
             $attrs: Record<string, unknown>;
             $refs: Record<string, unknown>;
             $slots: Readonly<{
@@ -103,75 +128,107 @@ declare const _default: {
             $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
             $emit: (event: string, ...args: any[]) => void;
             $el: any;
-            $options: import("vue").ComponentOptionsBase<Readonly<{
-                abstract: boolean;
-                static: boolean;
-                tag: string;
-                slotTag: string;
-            } & {
-                slotClass?: string | undefined;
-                slotId?: string | undefined;
-            }>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+            $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+                abstract: {
+                    type: BooleanConstructor;
+                    default: boolean;
+                };
+                tag: {
+                    type: StringConstructor;
+                    default: string;
+                };
+            }>>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
             }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
                 abstract: boolean;
-                static: boolean;
                 tag: string;
-                slotTag: string;
-            }>;
-            $forceUpdate: import("vue").ReactiveEffect<any>;
+            }> & {
+                beforeCreate?: (() => void) | (() => void)[] | undefined;
+                created?: (() => void) | (() => void)[] | undefined;
+                beforeMount?: (() => void) | (() => void)[] | undefined;
+                mounted?: (() => void) | (() => void)[] | undefined;
+                beforeUpdate?: (() => void) | (() => void)[] | undefined;
+                updated?: (() => void) | (() => void)[] | undefined;
+                activated?: (() => void) | (() => void)[] | undefined;
+                deactivated?: (() => void) | (() => void)[] | undefined;
+                beforeDestroy?: (() => void) | (() => void)[] | undefined;
+                beforeUnmount?: (() => void) | (() => void)[] | undefined;
+                destroyed?: (() => void) | (() => void)[] | undefined;
+                unmounted?: (() => void) | (() => void)[] | undefined;
+                renderTracked?: ((e: import("vue").DebuggerEvent) => void) | ((e: import("vue").DebuggerEvent) => void)[] | undefined;
+                renderTriggered?: ((e: import("vue").DebuggerEvent) => void) | ((e: import("vue").DebuggerEvent) => void)[] | undefined;
+                errorCaptured?: ((err: unknown, instance: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null, info: string) => boolean | void) | ((err: unknown, instance: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null, info: string) => boolean | void)[] | undefined;
+            };
+            $forceUpdate: () => void;
             $nextTick: typeof import("vue").nextTick;
             $watch(source: string | Function, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
-        } & Readonly<{
-            abstract: boolean;
-            static: boolean;
-            tag: string;
-            slotTag: string;
-        } & {
-            slotClass?: string | undefined;
-            slotId?: string | undefined;
-        }> & import("vue").ShallowUnwrapRef<() => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        } & Readonly<import("vue").ExtractPropTypes<{
+            abstract: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
+            tag: {
+                type: StringConstructor;
+                default: string;
+            };
+        }>> & import("vue").ShallowUnwrapRef<() => VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
-        }>> & {} & import("vue").ComponentCustomProperties;
+        }>> & {} & {} & import("vue").ComponentCustomProperties;
         __isFragment?: undefined;
         __isTeleport?: undefined;
         __isSuspense?: undefined;
-    } & import("vue").ComponentOptionsBase<Readonly<{
-        abstract: boolean;
-        static: boolean;
-        tag: string;
-        slotTag: string;
-    } & {
-        slotClass?: string | undefined;
-        slotId?: string | undefined;
-    }>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+        abstract: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        tag: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
         abstract: boolean;
-        static: boolean;
         tag: string;
-        slotTag: string;
     }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & {
         install: typeof install;
+        Style: import("vue").DefineComponent<{
+            media: StringConstructor;
+            nonce: StringConstructor;
+        }, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+            [key: string]: any;
+        }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+            media: StringConstructor;
+            nonce: StringConstructor;
+        }>>, {}>;
     };
+    ShadowStyle: import("vue").DefineComponent<{
+        media: StringConstructor;
+        nonce: StringConstructor;
+    }, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+        media: StringConstructor;
+        nonce: StringConstructor;
+    }>>, {}>;
     shadow_root: {
         new (...args: any[]): {
             $: import("vue").ComponentInternalInstance;
             $data: {};
             $props: Partial<{
                 abstract: boolean;
-                static: boolean;
                 tag: string;
-                slotTag: string;
-            }> & Pick<Readonly<{
-                abstract: boolean;
-                static: boolean;
-                tag: string;
-                slotTag: string;
-            } & {
-                slotClass?: string | undefined;
-                slotId?: string | undefined;
-            }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "slotClass" | "slotId" | "key" | "ref" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class" | "style">;
+            }> & Pick<Readonly<import("vue").ExtractPropTypes<{
+                abstract: {
+                    type: BooleanConstructor;
+                    default: boolean;
+                };
+                tag: {
+                    type: StringConstructor;
+                    default: string;
+                };
+            }>> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
             $attrs: Record<string, unknown>;
             $refs: Record<string, unknown>;
             $slots: Readonly<{
@@ -181,57 +238,90 @@ declare const _default: {
             $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
             $emit: (event: string, ...args: any[]) => void;
             $el: any;
-            $options: import("vue").ComponentOptionsBase<Readonly<{
-                abstract: boolean;
-                static: boolean;
-                tag: string;
-                slotTag: string;
-            } & {
-                slotClass?: string | undefined;
-                slotId?: string | undefined;
-            }>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+            $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+                abstract: {
+                    type: BooleanConstructor;
+                    default: boolean;
+                };
+                tag: {
+                    type: StringConstructor;
+                    default: string;
+                };
+            }>>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
             }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
                 abstract: boolean;
-                static: boolean;
                 tag: string;
-                slotTag: string;
-            }>;
-            $forceUpdate: import("vue").ReactiveEffect<any>;
+            }> & {
+                beforeCreate?: (() => void) | (() => void)[] | undefined;
+                created?: (() => void) | (() => void)[] | undefined;
+                beforeMount?: (() => void) | (() => void)[] | undefined;
+                mounted?: (() => void) | (() => void)[] | undefined;
+                beforeUpdate?: (() => void) | (() => void)[] | undefined;
+                updated?: (() => void) | (() => void)[] | undefined;
+                activated?: (() => void) | (() => void)[] | undefined;
+                deactivated?: (() => void) | (() => void)[] | undefined;
+                beforeDestroy?: (() => void) | (() => void)[] | undefined;
+                beforeUnmount?: (() => void) | (() => void)[] | undefined;
+                destroyed?: (() => void) | (() => void)[] | undefined;
+                unmounted?: (() => void) | (() => void)[] | undefined;
+                renderTracked?: ((e: import("vue").DebuggerEvent) => void) | ((e: import("vue").DebuggerEvent) => void)[] | undefined;
+                renderTriggered?: ((e: import("vue").DebuggerEvent) => void) | ((e: import("vue").DebuggerEvent) => void)[] | undefined;
+                errorCaptured?: ((err: unknown, instance: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null, info: string) => boolean | void) | ((err: unknown, instance: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null, info: string) => boolean | void)[] | undefined;
+            };
+            $forceUpdate: () => void;
             $nextTick: typeof import("vue").nextTick;
             $watch(source: string | Function, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
-        } & Readonly<{
-            abstract: boolean;
-            static: boolean;
-            tag: string;
-            slotTag: string;
-        } & {
-            slotClass?: string | undefined;
-            slotId?: string | undefined;
-        }> & import("vue").ShallowUnwrapRef<() => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        } & Readonly<import("vue").ExtractPropTypes<{
+            abstract: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
+            tag: {
+                type: StringConstructor;
+                default: string;
+            };
+        }>> & import("vue").ShallowUnwrapRef<() => VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
-        }>> & {} & import("vue").ComponentCustomProperties;
+        }>> & {} & {} & import("vue").ComponentCustomProperties;
         __isFragment?: undefined;
         __isTeleport?: undefined;
         __isSuspense?: undefined;
-    } & import("vue").ComponentOptionsBase<Readonly<{
-        abstract: boolean;
-        static: boolean;
-        tag: string;
-        slotTag: string;
-    } & {
-        slotClass?: string | undefined;
-        slotId?: string | undefined;
-    }>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+        abstract: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        tag: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
         abstract: boolean;
-        static: boolean;
         tag: string;
-        slotTag: string;
     }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & {
         install: typeof install;
+        Style: import("vue").DefineComponent<{
+            media: StringConstructor;
+            nonce: StringConstructor;
+        }, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+            [key: string]: any;
+        }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+            media: StringConstructor;
+            nonce: StringConstructor;
+        }>>, {}>;
     };
+    shadow_style: import("vue").DefineComponent<{
+        media: StringConstructor;
+        nonce: StringConstructor;
+    }, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+        media: StringConstructor;
+        nonce: StringConstructor;
+    }>>, {}>;
     install: typeof install;
 };
 export default _default;

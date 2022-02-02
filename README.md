@@ -11,10 +11,13 @@
 > ```
 
 ## Usage
+
 ```
 npm i vue-shadow-dom
 ```
+
 ---
+
 ```html
 <head>
   <script src="vue.js"></script>
@@ -33,7 +36,9 @@ import shadow from 'vue-shadow-dom'
 const app = Vue.createApp(...)
 app.use(shadow)
 ```
+
 ### Files
+
 - `dist/shadow.global.js`  
   For UMD
   ```html
@@ -78,7 +83,9 @@ app.use(shadow)
   ```js
   import shadow from 'vue-shadow-dom'
   ```
+
 ---
+
 ```html
 <div v-shadow id=app>
   <input>
@@ -95,31 +102,33 @@ Will output
     <input>
   ▼ <div>
    ▼ #shadow-root (open)
-    ▼ <div>
-        <div></div>
-        <p>123</p>
-      </div>
+      <div></div>
+      <p>123</p>
     </div>
   </div>
 ```
+
 ## Api
+
 - `<shadow-root>`  
 Usage: 
   ```html
   <shadow-root></shadow-root>
   ```
+  
   ### Props
-  - `abstract`、`static`
-    - type: `Boolean`
+
+  - `abstract`
+    - type: `boolean`
     - default: `false`
+ 
+    Unless you know what you are doing, don't modify this
 
-    They are unsafe  
+    it change the location of the #shadow-root  
+    it should not be dynamically changed  
 
-    Unless you know what you are doing, don't modify them
-
-    They change the location of the #shadow-root  
-    they should not be dynamically changed  
     #### default
+
     ```html
     <article>
       <shadow-root><br></shadow-root>
@@ -129,13 +138,12 @@ Usage:
     ▼ <article>
      ▼ <div>
       ▼ #shadow-root (open)
-       ▼ <div>
-          <br>
-         </div>
-       </div>
+         <br>
       </article>
     ```
+
     #### abstract
+
     It will make other external tags unavailable
     ```html
     <article>
@@ -145,28 +153,14 @@ Usage:
     ```html
     ▼ <article>
      ▼ #shadow-root (open)
-      ▼ <div>
-          <br>
-        </div>
-      </article>
-    ```
-    #### static
-    If you destroy the first level tag in the #shadow-root will not be restored
-    ```html
-    <article>
-      <shadow-root static><br></shadow-root>
-    </article>
-    ```
-    ```html
-    ▼ <article>
-     ▼ <div>
-      ▼ #shadow-root (open)
-         <br>
-       </div>
+        <br>
       </article>
     ```
 
   - `tag`
+    - type: `string`
+    - default: `'div'`
+
     ```html
     <article>
       <shadow-root tag="section"><br></shadow-root>
@@ -176,28 +170,28 @@ Usage:
     ▼ <article>
      ▼ <section>
       ▼ #shadow-root (open)
-       ▼ <div>
-          <br>
-         </div>
+         <br>
        </section>
       </article>
     ```
-  - `slotTag`、`slotClass`、`slotId`
-    ```html
-    <article>
-      <shadow-root slot-tag="section" slot-class="slotclass" slot-id="slotid"><br></shadow-root>
-    </article>
+
+  ### Expose
+
+  ```typescript
+    const ex = ref<ShadowRootExpose>()
     ```
     ```html
-    ▼ <article>
-     ▼ <div>
-      ▼ #shadow-root (open)
-       ▼ <section class="slotclass" id="slotid">
-          <br>
-         </section>
-       </div>
-      </article>
+    <shadow-root ref="ex"></shadow-root>
     ```
+
+  - `shadow_root`  
+   
+    - type: `ShadowRoot`  
+
+    ```typescript
+    const shadow_root: ShadowRoot = ex.shadow_root
+    ```
+
 - `v-shadow`  
   v-shadow will also cause the first level tag to be unrecoverable  
   Unless you know what you are doing, don't use  
@@ -206,28 +200,18 @@ Usage:
   ```html
   <div v-shadow></div>
   ```
----
-If you need to customize
-```html
-<div 0>
-  <div 1>
-    #shadow-root (open)
-      <div 2></div 2>
-      <div 2>
-        <div 3></div 3>
-      </div 2>
-      <div 2>
-        <div 3>
-          <div 4>...</div 4>
-        </div 3>
-      </div 2>
-      ...
-  </div 1>
-</div 0>
-```
-just let `div 1` and `div 2` not be destroyed
+
 ## Build
+
 ```
 npm i
 npm run build
+```
+
+### Test
+
+```
+npm run test:dev
+npm run test:build
+npm run test:preview
 ```
