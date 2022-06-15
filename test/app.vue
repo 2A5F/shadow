@@ -7,6 +7,9 @@ const show_child = ref(true)
 
 const ex = ref<ShadowRootExpose>()
 watch(ex, ex => console.log(ex.shadow_root))
+
+const adoptedStyleSheets = new CSSStyleSheet()
+;(adoptedStyleSheets as any).replace('p { color: green }')
 </script>
 <template>
     <div>default</div>
@@ -16,5 +19,8 @@ watch(ex, ex => console.log(ex.shadow_root))
         <shadow-style>p { color: red }</shadow-style>
         <p>self exist</p>
         <p v-if="show_child">child exist</p>
+    </shadow-root>
+    <shadow-root :adopted-style-sheets="[adoptedStyleSheets]">
+        <p>test adoptedStyleSheets</p>
     </shadow-root>
 </template>

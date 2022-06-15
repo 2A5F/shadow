@@ -1,4 +1,4 @@
-import { defineComponent, h, ref, Teleport, onBeforeMount, onMounted, computed, reactive, PropType } from 'vue'
+import { defineComponent, h, ref, Teleport, onBeforeMount, onMounted, computed, reactive, PropType, watch } from 'vue'
 import type { App, VNode } from 'vue'
 
 type GShadowRoot = typeof global.ShadowRoot.prototype
@@ -89,6 +89,9 @@ export const ShadowRoot = withType<{
                 type: String,
                 default: 'div',
             },
+            adoptedStyleSheets: {
+                type: Array as PropType<CSSStyleSheet[]>,
+            },
         },
         emits: ['error'],
         setup(props, { slots, expose, emit }) {
@@ -124,6 +127,16 @@ export const ShadowRoot = withType<{
                         shadow_root.value = makeShadowRaw(el.value!, void 0, { mode: props.mode, delegatesFocus: props.delegatesFocus })
                     }
                     shadow_root.value?.styleSheets
+                } catch (e) {
+                    console.error(e)
+                    emit('error', e)
+                }
+            })
+
+            watch([shadow_root, () => props.adoptedStyleSheets], ([shadow_root, adoptedStyleSheets]) => {
+                if (!shadow_root || !adoptedStyleSheets) return
+                try {
+                    ;(shadow_root as any).adoptedStyleSheets = adoptedStyleSheets
                 } catch (e) {
                     console.error(e)
                     emit('error', e)
