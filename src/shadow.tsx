@@ -1,19 +1,25 @@
-import { defineComponent, h, ref, Teleport, onBeforeMount, onMounted, computed, reactive } from 'vue'
+import { defineComponent, h, ref, Teleport, onBeforeMount, onMounted, computed, reactive, PropType } from 'vue'
 import type { App, VNode } from 'vue'
 
 type GShadowRoot = typeof global.ShadowRoot.prototype
 
-export function makeShadow(el: Element) {
-    return makeShadowRaw(el, el.childNodes)
+export interface ShadowOption {
+    mode?: 'open' | 'closed'
+    delegatesFocus?: boolean
 }
-export function makeShadowRaw(rootEl: Element, childNodes?: Iterable<Node>) {
+
+export function makeShadow(el: Element, option?: ShadowOption) {
+    return makeShadowRaw(el, el.childNodes, option)
+}
+export function makeShadowRaw(rootEl: Element, childNodes?: Iterable<Node>, option?: ShadowOption): ShadowRoot | undefined
+export function makeShadowRaw(rootEl: Element, childNodes?: Iterable<Node>, { mode = 'open', delegatesFocus = false }: ShadowOption = { mode: 'open' }) {
     try {
         const oldroot = rootEl.shadowRoot
         if (oldroot != null) {
             console.error('[shadow] Attach shadow multiple times', rootEl, childNodes, oldroot)
             return
         } else {
-            const shadow_root = rootEl.attachShadow({ mode: 'open' })
+            const shadow_root = rootEl.attachShadow({ mode, delegatesFocus })
             if (childNodes) putDomIntoShadow(shadow_root, childNodes)
             return shadow_root
         }
@@ -67,6 +73,14 @@ export const ShadowRoot = withType<{
 }>()(
     defineComponent({
         props: {
+            mode: {
+                type: String as PropType<'open' | 'closed'>,
+                default: 'open',
+            },
+            delegatesFocus: {
+                type: Boolean,
+                default: false,
+            },
             abstract: {
                 type: Boolean,
                 default: false,
@@ -76,7 +90,8 @@ export const ShadowRoot = withType<{
                 default: 'div',
             },
         },
-        setup(props, { slots, expose }) {
+        emits: ['error'],
+        setup(props, { slots, expose, emit }) {
             const abstract = ref(false)
 
             const el = ref<HTMLElement>()
@@ -95,14 +110,23 @@ export const ShadowRoot = withType<{
             })
 
             onMounted(() => {
-                if (abstract.value) {
-                    if (teleport_el.value!.parentElement!.shadowRoot) {
-                        shadow_root.value = teleport_el.value!.parentElement!.shadowRoot
+                try {
+                    if (abstract.value) {
+                        if (teleport_el.value!.parentElement!.shadowRoot) {
+                            shadow_root.value = teleport_el.value!.parentElement!.shadowRoot
+                        } else {
+                            shadow_root.value = makeShadowRaw(teleport_el.value!.parentElement!, void 0, {
+                                mode: props.mode,
+                                delegatesFocus: props.delegatesFocus,
+                            })
+                        }
                     } else {
-                        shadow_root.value = makeShadowRaw(teleport_el.value!.parentElement!)
+                        shadow_root.value = makeShadowRaw(el.value!, void 0, { mode: props.mode, delegatesFocus: props.delegatesFocus })
                     }
-                } else {
-                    shadow_root.value = makeShadowRaw(el.value!)
+                    shadow_root.value?.styleSheets
+                } catch (e) {
+                    console.error(e)
+                    emit('error', e)
                 }
             })
 
@@ -130,6 +154,7 @@ export function install(app: App) {
 
     app.directive('shadow', {
         beforeMount(el: HTMLElement) {
+            console.warn('[VueShadowDom] Deprecated v-shadow directive, use <shadow-root> component')
             makeShadow(el)
         },
     })

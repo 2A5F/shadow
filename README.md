@@ -203,7 +203,9 @@ Usage:
 
   The reason it exists is that vue SFC disabled style tag
 
-- `v-shadow`  
+- ~~`v-shadow`~~  
+  ***Deprecated***
+
   Usage: 
   ```html
   <div v-shadow></div>
