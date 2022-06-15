@@ -57,10 +57,15 @@ const ShadowRoot = Vue.extend({
         this.pstatic = this.static
     },
     mounted() {
-        if (this.pabstract) {
-            makeAbstractShadow(this.$el.parentElement!, this.$el.childNodes)
-        } else {
-            makeShadow(this.$el)
+        try {
+            if (this.pabstract) {
+                makeAbstractShadow(this.$el.parentElement!, this.$el.childNodes)
+            } else {
+                makeShadow(this.$el)
+            }
+        } catch (e) {
+            console.error(e)
+            this.$emit('error', e)
         }
     },
 })
@@ -69,8 +74,19 @@ function install(vue: typeof Vue) {
     vue.component('shadow-root', ShadowRoot)
 
     vue.directive('shadow', {
-        bind(el: HTMLElement) {
-            makeShadow(el)
+        bind(el: HTMLElement, binding) {
+            try {
+                makeShadow(el)
+            } catch (e) {
+                console.error(e)
+                if (binding && typeof binding.value == 'function') {
+                    try {
+                        binding.value(e)
+                    } catch (e2) {
+                        console.error(e2)
+                    }
+                }
+            }
         }
     })
 }

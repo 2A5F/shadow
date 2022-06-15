@@ -63,19 +63,38 @@
             this.pstatic = this.static;
         },
         mounted() {
-            if (this.pabstract) {
-                makeAbstractShadow(this.$el.parentElement, this.$el.childNodes);
+            try {
+                if (this.pabstract) {
+                    makeAbstractShadow(this.$el.parentElement, this.$el.childNodes);
+                }
+                else {
+                    makeShadow(this.$el);
+                }
             }
-            else {
-                makeShadow(this.$el);
+            catch (e) {
+                console.error(e);
+                this.$emit('error', e);
             }
         },
     });
     function install(vue) {
         vue.component('shadow-root', ShadowRoot);
         vue.directive('shadow', {
-            bind(el) {
-                makeShadow(el);
+            bind(el, binding) {
+                try {
+                    makeShadow(el);
+                }
+                catch (e) {
+                    console.error(e);
+                    if (binding && typeof binding.value == 'function') {
+                        try {
+                            binding.value(e);
+                        }
+                        catch (e2) {
+                            console.error(e2);
+                        }
+                    }
+                }
             }
         });
     }
