@@ -217,12 +217,12 @@ Usage:
   const adoptedStyleSheets = new CSSStyleSheet()
   adoptedStyleSheets.replace('p { color: green }')
   ```
-  ```vue
+  ```html
   <shadow-root :adopted-style-sheets="[adoptedStyleSheets]">
     <p>test adoptedStyleSheets</p>
   </shadow-root>
   ```
-  ![p is green](./p_is_green.png)
+  result: ![p is green](./p_is_green.png)
 
 ## Build
 

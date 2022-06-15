@@ -43,9 +43,12 @@ export declare const ShadowRoot: {
                 type: StringConstructor;
                 default: string;
             };
+            adoptedStyleSheets: {
+                type: PropType<CSSStyleSheet[]>;
+            };
         }>> & {
             onError?: ((...args: any[]) => any) | undefined;
-        } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "onError" | "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
+        } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "onError" | "adoptedStyleSheets" | "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
         $attrs: Record<string, unknown>;
         $refs: Record<string, unknown>;
         $slots: Readonly<{
@@ -71,6 +74,9 @@ export declare const ShadowRoot: {
             tag: {
                 type: StringConstructor;
                 default: string;
+            };
+            adoptedStyleSheets: {
+                type: PropType<CSSStyleSheet[]>;
             };
         }>> & {
             onError?: ((...args: any[]) => any) | undefined;
@@ -116,6 +122,9 @@ export declare const ShadowRoot: {
             type: StringConstructor;
             default: string;
         };
+        adoptedStyleSheets: {
+            type: PropType<CSSStyleSheet[]>;
+        };
     }>> & {
         onError?: ((...args: any[]) => any) | undefined;
     } & import("vue").ShallowUnwrapRef<() => VNode> & {} & {} & import("vue").ComponentCustomProperties;
@@ -138,6 +147,9 @@ export declare const ShadowRoot: {
     tag: {
         type: StringConstructor;
         default: string;
+    };
+    adoptedStyleSheets: {
+        type: PropType<CSSStyleSheet[]>;
     };
 }>> & {
     onError?: ((...args: any[]) => any) | undefined;
@@ -179,9 +191,12 @@ declare const _default: {
                     type: StringConstructor;
                     default: string;
                 };
+                adoptedStyleSheets: {
+                    type: PropType<CSSStyleSheet[]>;
+                };
             }>> & {
                 onError?: ((...args: any[]) => any) | undefined;
-            } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "onError" | "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
+            } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "onError" | "adoptedStyleSheets" | "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
             $attrs: Record<string, unknown>;
             $refs: Record<string, unknown>;
             $slots: Readonly<{
@@ -207,6 +222,9 @@ declare const _default: {
                 tag: {
                     type: StringConstructor;
                     default: string;
+                };
+                adoptedStyleSheets: {
+                    type: PropType<CSSStyleSheet[]>;
                 };
             }>> & {
                 onError?: ((...args: any[]) => any) | undefined;
@@ -254,6 +272,9 @@ declare const _default: {
                 type: StringConstructor;
                 default: string;
             };
+            adoptedStyleSheets: {
+                type: PropType<CSSStyleSheet[]>;
+            };
         }>> & {
             onError?: ((...args: any[]) => any) | undefined;
         } & import("vue").ShallowUnwrapRef<() => VNode<import("vue").RendererNode, import("vue").RendererElement, {
@@ -278,6 +299,9 @@ declare const _default: {
         tag: {
             type: StringConstructor;
             default: string;
+        };
+        adoptedStyleSheets: {
+            type: PropType<CSSStyleSheet[]>;
         };
     }>> & {
         onError?: ((...args: any[]) => any) | undefined;
@@ -335,9 +359,12 @@ declare const _default: {
                     type: StringConstructor;
                     default: string;
                 };
+                adoptedStyleSheets: {
+                    type: PropType<CSSStyleSheet[]>;
+                };
             }>> & {
                 onError?: ((...args: any[]) => any) | undefined;
-            } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "onError" | "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
+            } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "onError" | "adoptedStyleSheets" | "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
             $attrs: Record<string, unknown>;
             $refs: Record<string, unknown>;
             $slots: Readonly<{
@@ -363,6 +390,9 @@ declare const _default: {
                 tag: {
                     type: StringConstructor;
                     default: string;
+                };
+                adoptedStyleSheets: {
+                    type: PropType<CSSStyleSheet[]>;
                 };
             }>> & {
                 onError?: ((...args: any[]) => any) | undefined;
@@ -410,6 +440,9 @@ declare const _default: {
                 type: StringConstructor;
                 default: string;
             };
+            adoptedStyleSheets: {
+                type: PropType<CSSStyleSheet[]>;
+            };
         }>> & {
             onError?: ((...args: any[]) => any) | undefined;
         } & import("vue").ShallowUnwrapRef<() => VNode<import("vue").RendererNode, import("vue").RendererElement, {
@@ -434,6 +467,9 @@ declare const _default: {
         tag: {
             type: StringConstructor;
             default: string;
+        };
+        adoptedStyleSheets: {
+            type: PropType<CSSStyleSheet[]>;
         };
     }>> & {
         onError?: ((...args: any[]) => any) | undefined;

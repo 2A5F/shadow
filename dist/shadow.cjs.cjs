@@ -70,6 +70,9 @@ const ShadowRoot = withType()(vue.defineComponent({
             type: String,
             default: 'div',
         },
+        adoptedStyleSheets: {
+            type: Array,
+        },
     },
     emits: ['error'],
     setup(props, { slots, expose, emit }) {
@@ -102,6 +105,18 @@ const ShadowRoot = withType()(vue.defineComponent({
                     shadow_root.value = makeShadowRaw(el.value, void 0, { mode: props.mode, delegatesFocus: props.delegatesFocus });
                 }
                 shadow_root.value?.styleSheets;
+            }
+            catch (e) {
+                console.error(e);
+                emit('error', e);
+            }
+        });
+        vue.watch([shadow_root, () => props.adoptedStyleSheets], ([shadow_root, adoptedStyleSheets]) => {
+            if (!shadow_root || !adoptedStyleSheets)
+                return;
+            try {
+                ;
+                shadow_root.adoptedStyleSheets = adoptedStyleSheets;
             }
             catch (e) {
                 console.error(e);

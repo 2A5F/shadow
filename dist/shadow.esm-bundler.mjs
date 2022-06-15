@@ -1,4 +1,4 @@
-import { defineComponent, h, ref, computed, reactive, onBeforeMount, onMounted, Teleport } from 'vue';
+import { defineComponent, h, ref, computed, reactive, onBeforeMount, onMounted, watch, Teleport } from 'vue';
 
 function makeShadow(el, option) {
     return makeShadowRaw(el, el.childNodes, option);
@@ -66,6 +66,9 @@ const ShadowRoot = withType()(defineComponent({
             type: String,
             default: 'div',
         },
+        adoptedStyleSheets: {
+            type: Array,
+        },
     },
     emits: ['error'],
     setup(props, { slots, expose, emit }) {
@@ -98,6 +101,18 @@ const ShadowRoot = withType()(defineComponent({
                     shadow_root.value = makeShadowRaw(el.value, void 0, { mode: props.mode, delegatesFocus: props.delegatesFocus });
                 }
                 shadow_root.value?.styleSheets;
+            }
+            catch (e) {
+                console.error(e);
+                emit('error', e);
+            }
+        });
+        watch([shadow_root, () => props.adoptedStyleSheets], ([shadow_root, adoptedStyleSheets]) => {
+            if (!shadow_root || !adoptedStyleSheets)
+                return;
+            try {
+                ;
+                shadow_root.adoptedStyleSheets = adoptedStyleSheets;
             }
             catch (e) {
                 console.error(e);
