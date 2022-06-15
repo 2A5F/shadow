@@ -1,9 +1,9 @@
 const { defineComponent, h, ref, Teleport, onBeforeMount, onMounted, computed, reactive } = globalThis.Vue;
 
-function makeShadow(el) {
-    return makeShadowRaw(el, el.childNodes);
+function makeShadow(el, option) {
+    return makeShadowRaw(el, el.childNodes, option);
 }
-function makeShadowRaw(rootEl, childNodes) {
+function makeShadowRaw(rootEl, childNodes, { mode = 'open', delegatesFocus = false } = { mode: 'open' }) {
     try {
         const oldroot = rootEl.shadowRoot;
         if (oldroot != null) {
@@ -11,7 +11,7 @@ function makeShadowRaw(rootEl, childNodes) {
             return;
         }
         else {
-            const shadow_root = rootEl.attachShadow({ mode: 'open' });
+            const shadow_root = rootEl.attachShadow({ mode, delegatesFocus });
             if (childNodes)
                 putDomIntoShadow(shadow_root, childNodes);
             return shadow_root;
@@ -50,6 +50,14 @@ const ShadowStyle = defineComponent({
 });
 const ShadowRoot = withType()(defineComponent({
     props: {
+        mode: {
+            type: String,
+            default: 'open',
+        },
+        delegatesFocus: {
+            type: Boolean,
+            default: false,
+        },
         abstract: {
             type: Boolean,
             default: false,
@@ -59,7 +67,8 @@ const ShadowRoot = withType()(defineComponent({
             default: 'div',
         },
     },
-    setup(props, { slots, expose }) {
+    emits: ['error'],
+    setup(props, { slots, expose, emit }) {
         const abstract = ref(false);
         const el = ref();
         const teleport_el = ref();
@@ -73,16 +82,26 @@ const ShadowRoot = withType()(defineComponent({
             abstract.value = props.abstract;
         });
         onMounted(() => {
-            if (abstract.value) {
-                if (teleport_el.value.parentElement.shadowRoot) {
-                    shadow_root.value = teleport_el.value.parentElement.shadowRoot;
+            try {
+                if (abstract.value) {
+                    if (teleport_el.value.parentElement.shadowRoot) {
+                        shadow_root.value = teleport_el.value.parentElement.shadowRoot;
+                    }
+                    else {
+                        shadow_root.value = makeShadowRaw(teleport_el.value.parentElement, void 0, {
+                            mode: props.mode,
+                            delegatesFocus: props.delegatesFocus,
+                        });
+                    }
                 }
                 else {
-                    shadow_root.value = makeShadowRaw(teleport_el.value.parentElement);
+                    shadow_root.value = makeShadowRaw(el.value, void 0, { mode: props.mode, delegatesFocus: props.delegatesFocus });
                 }
+                shadow_root.value?.styleSheets;
             }
-            else {
-                shadow_root.value = makeShadowRaw(el.value);
+            catch (e) {
+                console.error(e);
+                emit('error', e);
             }
         });
         return () => {
@@ -102,6 +121,7 @@ function install(app) {
     app.component('shadow-root', ShadowRoot);
     app.directive('shadow', {
         beforeMount(el) {
+            console.warn('[VueShadowDom] Deprecated v-shadow directive, use <shadow-root> component');
             makeShadow(el);
         },
     });

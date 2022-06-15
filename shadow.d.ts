@@ -1,7 +1,12 @@
+import { PropType } from 'vue';
 import type { App, VNode } from 'vue';
 declare type GShadowRoot = typeof global.ShadowRoot.prototype;
-export declare function makeShadow(el: Element): ShadowRoot | undefined;
-export declare function makeShadowRaw(rootEl: Element, childNodes?: Iterable<Node>): ShadowRoot | undefined;
+export interface ShadowOption {
+    mode?: 'open' | 'closed';
+    delegatesFocus?: boolean;
+}
+export declare function makeShadow(el: Element, option?: ShadowOption): ShadowRoot | undefined;
+export declare function makeShadowRaw(rootEl: Element, childNodes?: Iterable<Node>, option?: ShadowOption): ShadowRoot | undefined;
 export declare const ShadowStyle: import("vue").DefineComponent<{
     media: StringConstructor;
     nonce: StringConstructor;
@@ -17,9 +22,19 @@ export declare const ShadowRoot: {
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: Partial<{
+            mode: "open" | "closed";
+            delegatesFocus: boolean;
             abstract: boolean;
             tag: string;
         }> & Pick<Readonly<import("vue").ExtractPropTypes<{
+            mode: {
+                type: PropType<"open" | "closed">;
+                default: string;
+            };
+            delegatesFocus: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
             abstract: {
                 type: BooleanConstructor;
                 default: boolean;
@@ -28,7 +43,9 @@ export declare const ShadowRoot: {
                 type: StringConstructor;
                 default: string;
             };
-        }>> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
+        }>> & {
+            onError?: ((...args: any[]) => any) | undefined;
+        } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "onError" | "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
         $attrs: Record<string, unknown>;
         $refs: Record<string, unknown>;
         $slots: Readonly<{
@@ -36,9 +53,17 @@ export declare const ShadowRoot: {
         }>;
         $root: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
         $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
-        $emit: (event: string, ...args: any[]) => void;
+        $emit: (event: "error", ...args: any[]) => void;
         $el: any;
         $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+            mode: {
+                type: PropType<"open" | "closed">;
+                default: string;
+            };
+            delegatesFocus: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
             abstract: {
                 type: BooleanConstructor;
                 default: boolean;
@@ -47,7 +72,11 @@ export declare const ShadowRoot: {
                 type: StringConstructor;
                 default: string;
             };
-        }>>, () => VNode, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
+        }>> & {
+            onError?: ((...args: any[]) => any) | undefined;
+        }, () => VNode, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "error"[], string, {
+            mode: "open" | "closed";
+            delegatesFocus: boolean;
             abstract: boolean;
             tag: string;
         }> & {
@@ -71,6 +100,14 @@ export declare const ShadowRoot: {
         $nextTick: typeof import("vue").nextTick;
         $watch(source: string | Function, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
     } & Readonly<import("vue").ExtractPropTypes<{
+        mode: {
+            type: PropType<"open" | "closed">;
+            default: string;
+        };
+        delegatesFocus: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
         abstract: {
             type: BooleanConstructor;
             default: boolean;
@@ -79,11 +116,21 @@ export declare const ShadowRoot: {
             type: StringConstructor;
             default: string;
         };
-    }>> & import("vue").ShallowUnwrapRef<() => VNode> & {} & {} & import("vue").ComponentCustomProperties;
+    }>> & {
+        onError?: ((...args: any[]) => any) | undefined;
+    } & import("vue").ShallowUnwrapRef<() => VNode> & {} & {} & import("vue").ComponentCustomProperties;
     __isFragment?: undefined;
     __isTeleport?: undefined;
     __isSuspense?: undefined;
 } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+    mode: {
+        type: PropType<"open" | "closed">;
+        default: string;
+    };
+    delegatesFocus: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     abstract: {
         type: BooleanConstructor;
         default: boolean;
@@ -92,7 +139,11 @@ export declare const ShadowRoot: {
         type: StringConstructor;
         default: string;
     };
-}>>, () => VNode, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
+}>> & {
+    onError?: ((...args: any[]) => any) | undefined;
+}, () => VNode, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "error"[], "error", {
+    mode: "open" | "closed";
+    delegatesFocus: boolean;
     abstract: boolean;
     tag: string;
 }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & {
@@ -107,9 +158,19 @@ declare const _default: {
             $: import("vue").ComponentInternalInstance;
             $data: {};
             $props: Partial<{
+                mode: "open" | "closed";
+                delegatesFocus: boolean;
                 abstract: boolean;
                 tag: string;
             }> & Pick<Readonly<import("vue").ExtractPropTypes<{
+                mode: {
+                    type: PropType<"open" | "closed">;
+                    default: string;
+                };
+                delegatesFocus: {
+                    type: BooleanConstructor;
+                    default: boolean;
+                };
                 abstract: {
                     type: BooleanConstructor;
                     default: boolean;
@@ -118,7 +179,9 @@ declare const _default: {
                     type: StringConstructor;
                     default: string;
                 };
-            }>> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
+            }>> & {
+                onError?: ((...args: any[]) => any) | undefined;
+            } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "onError" | "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
             $attrs: Record<string, unknown>;
             $refs: Record<string, unknown>;
             $slots: Readonly<{
@@ -126,9 +189,17 @@ declare const _default: {
             }>;
             $root: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
             $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
-            $emit: (event: string, ...args: any[]) => void;
+            $emit: (event: "error", ...args: any[]) => void;
             $el: any;
             $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+                mode: {
+                    type: PropType<"open" | "closed">;
+                    default: string;
+                };
+                delegatesFocus: {
+                    type: BooleanConstructor;
+                    default: boolean;
+                };
                 abstract: {
                     type: BooleanConstructor;
                     default: boolean;
@@ -137,9 +208,13 @@ declare const _default: {
                     type: StringConstructor;
                     default: string;
                 };
-            }>>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+            }>> & {
+                onError?: ((...args: any[]) => any) | undefined;
+            }, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
-            }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
+            }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "error"[], string, {
+                mode: "open" | "closed";
+                delegatesFocus: boolean;
                 abstract: boolean;
                 tag: string;
             }> & {
@@ -163,6 +238,14 @@ declare const _default: {
             $nextTick: typeof import("vue").nextTick;
             $watch(source: string | Function, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
         } & Readonly<import("vue").ExtractPropTypes<{
+            mode: {
+                type: PropType<"open" | "closed">;
+                default: string;
+            };
+            delegatesFocus: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
             abstract: {
                 type: BooleanConstructor;
                 default: boolean;
@@ -171,13 +254,23 @@ declare const _default: {
                 type: StringConstructor;
                 default: string;
             };
-        }>> & import("vue").ShallowUnwrapRef<() => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        }>> & {
+            onError?: ((...args: any[]) => any) | undefined;
+        } & import("vue").ShallowUnwrapRef<() => VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
         }>> & {} & {} & import("vue").ComponentCustomProperties;
         __isFragment?: undefined;
         __isTeleport?: undefined;
         __isSuspense?: undefined;
     } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+        mode: {
+            type: PropType<"open" | "closed">;
+            default: string;
+        };
+        delegatesFocus: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
         abstract: {
             type: BooleanConstructor;
             default: boolean;
@@ -186,9 +279,13 @@ declare const _default: {
             type: StringConstructor;
             default: string;
         };
-    }>>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    }>> & {
+        onError?: ((...args: any[]) => any) | undefined;
+    }, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
-    }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
+    }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "error"[], "error", {
+        mode: "open" | "closed";
+        delegatesFocus: boolean;
         abstract: boolean;
         tag: string;
     }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & {
@@ -217,9 +314,19 @@ declare const _default: {
             $: import("vue").ComponentInternalInstance;
             $data: {};
             $props: Partial<{
+                mode: "open" | "closed";
+                delegatesFocus: boolean;
                 abstract: boolean;
                 tag: string;
             }> & Pick<Readonly<import("vue").ExtractPropTypes<{
+                mode: {
+                    type: PropType<"open" | "closed">;
+                    default: string;
+                };
+                delegatesFocus: {
+                    type: BooleanConstructor;
+                    default: boolean;
+                };
                 abstract: {
                     type: BooleanConstructor;
                     default: boolean;
@@ -228,7 +335,9 @@ declare const _default: {
                     type: StringConstructor;
                     default: string;
                 };
-            }>> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
+            }>> & {
+                onError?: ((...args: any[]) => any) | undefined;
+            } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "onError" | "style" | "key" | "ref" | "ref_for" | "ref_key" | "onVnodeBeforeMount" | "onVnodeMounted" | "onVnodeBeforeUpdate" | "onVnodeUpdated" | "onVnodeBeforeUnmount" | "onVnodeUnmounted" | "class">;
             $attrs: Record<string, unknown>;
             $refs: Record<string, unknown>;
             $slots: Readonly<{
@@ -236,9 +345,17 @@ declare const _default: {
             }>;
             $root: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
             $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
-            $emit: (event: string, ...args: any[]) => void;
+            $emit: (event: "error", ...args: any[]) => void;
             $el: any;
             $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+                mode: {
+                    type: PropType<"open" | "closed">;
+                    default: string;
+                };
+                delegatesFocus: {
+                    type: BooleanConstructor;
+                    default: boolean;
+                };
                 abstract: {
                     type: BooleanConstructor;
                     default: boolean;
@@ -247,9 +364,13 @@ declare const _default: {
                     type: StringConstructor;
                     default: string;
                 };
-            }>>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+            }>> & {
+                onError?: ((...args: any[]) => any) | undefined;
+            }, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
-            }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
+            }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "error"[], string, {
+                mode: "open" | "closed";
+                delegatesFocus: boolean;
                 abstract: boolean;
                 tag: string;
             }> & {
@@ -273,6 +394,14 @@ declare const _default: {
             $nextTick: typeof import("vue").nextTick;
             $watch(source: string | Function, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
         } & Readonly<import("vue").ExtractPropTypes<{
+            mode: {
+                type: PropType<"open" | "closed">;
+                default: string;
+            };
+            delegatesFocus: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
             abstract: {
                 type: BooleanConstructor;
                 default: boolean;
@@ -281,13 +410,23 @@ declare const _default: {
                 type: StringConstructor;
                 default: string;
             };
-        }>> & import("vue").ShallowUnwrapRef<() => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        }>> & {
+            onError?: ((...args: any[]) => any) | undefined;
+        } & import("vue").ShallowUnwrapRef<() => VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
         }>> & {} & {} & import("vue").ComponentCustomProperties;
         __isFragment?: undefined;
         __isTeleport?: undefined;
         __isSuspense?: undefined;
     } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+        mode: {
+            type: PropType<"open" | "closed">;
+            default: string;
+        };
+        delegatesFocus: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
         abstract: {
             type: BooleanConstructor;
             default: boolean;
@@ -296,9 +435,13 @@ declare const _default: {
             type: StringConstructor;
             default: string;
         };
-    }>>, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    }>> & {
+        onError?: ((...args: any[]) => any) | undefined;
+    }, () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
-    }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, {
+    }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "error"[], "error", {
+        mode: "open" | "closed";
+        delegatesFocus: boolean;
         abstract: boolean;
         tag: string;
     }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & {
