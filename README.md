@@ -19,9 +19,10 @@
   ```
   
   ```typescript
+  import { createApp } from 'vue'
   import shadow from 'vue-shadow-dom'
   
-  const app = Vue.createApp(...)
+  const app = createApp(...)
   app.use(shadow)
   app.mount(...)
   ```
