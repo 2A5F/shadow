@@ -12,30 +12,76 @@
 
 ## Usage
 
-```
-npm i vue-shadow-dom
-```
+- typescript / node / bundle tools (vite webpack ...)
 
----
-
-```html
-<head>
-  <script src="vue.js"></script>
-  <script src="../path/to/shadow.global.js"></script>
+  ```
+  npm i vue-shadow-dom
+  ```
   
-  <script>
-    const app = Vue.createApp(...)
-    app.use(shadow)
-  </script>
-</head>
-```
-or
-```typescript
-import shadow from 'vue-shadow-dom'
+  ```typescript
+  import shadow from 'vue-shadow-dom'
+  
+  const app = Vue.createApp(...)
+  app.use(shadow)
+  app.mount(...)
+  ```
 
-const app = Vue.createApp(...)
-app.use(shadow)
-```
+- importmap
+
+  ```html
+  <head>
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "../path/to/vue.esm-browser.js",
+          "vue-shadow-dom": "../path/to/shadow.esm-bundler.mjs"
+        }
+      }
+    </script>
+  
+    <script type="module">
+      import { createApp } from 'vue'
+      import shadow from 'vue-shadow-root'
+  
+      const app = createApp(...)
+      app.use(shadow)
+      app.mount(...)
+    </script>
+  </head>
+  ```
+
+- legacy global
+
+  ```html
+  <head>
+    <script src="vue.js"></script>
+    <script src="../path/to/shadow.global.js"></script>
+    
+    <script>
+      const app = Vue.createApp(...)
+      app.use(shadow)
+      app.mount(...)
+    </script>
+  </head>
+  ```
+
+- legacy global esm mixed
+
+  ```html
+  <head>
+    <script src="vue.js"></script>
+    <link rel="modulepreload" href="../path/to/shadow.esm-browser.mjs" />
+    
+    <script type="module">
+      import shadow from '../path/to/shadow.esm-browser.mjs'
+      
+      const app = Vue.createApp(...)
+      app.use(shadow)
+      app.mount(...)
+    </script>
+  </head>
+  ```
+
 
 ### Files
 
@@ -64,7 +110,7 @@ app.use(shadow)
   </script>
   ```
 - `dist/shadow.esm-bundler.mjs` | `dist/shadow.esm-bundler.prod.mjs`  
-  For packaging tool  
+  For packaging tool or importmap  
   ```js
   import shadow from '../path/to/shadow.esm-bundler.mjs'
   ```
